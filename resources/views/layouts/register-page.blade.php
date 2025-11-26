@@ -29,26 +29,6 @@
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-[#F5F9FF] shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
-
-                <div>
-                    <div class="flex items-center my-6">
-                        <hr class="flex-grow border-gray-700">
-                        <span class="mx-3 text-sm text-gray-400">Or continue with</span>
-                        <hr class="flex-grow border-gray-700">
-                    </div>
-
-                    <div class="flex gap-3">
-                        <button class="flex items-center justify-center gap-2 bg-[#F5F9FF] hover:bg-[#ffd900] text-black shadow-md font-medium py-2 rounded-md w-1/2">
-                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
-                            Google
-                        </button>
-                        <button class="flex items-center justify-center gap-2 bg-[#F5F9FF] hover:bg-[#ffd900] text-black shadow-md font-medium py-2 rounded-md w-1/2">
-                            <img src="https://www.svgrepo.com/show/511330/apple-173.svg" class="w-5 h-5" alt="GitHub">
-                            Apple
-                        </button>
-                    </div>
-                </div>
-
             </div>
         </div>
     </body>
