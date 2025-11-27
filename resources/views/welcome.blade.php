@@ -74,7 +74,7 @@
         </p>
 
         <div class="mt-10 flex justify-center space-x-4">
-            <a href="#"
+            <a href="{{ url('/katalog') }}"
                class="px-6 py-3 bg-[#ffa602] text-black rounded-lg font-medium hover:text-[#ffffff] transition">
                 Sewa Sekarang  &raquo;
             </a>

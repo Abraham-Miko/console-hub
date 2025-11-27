@@ -21,9 +21,20 @@ Route::get('/verifikasi-pelanggan', function () {
     return view('admin.verifikasi-pelanggan');
 })->middleware(['auth', 'verified'])->name('verifikasi-pelanggan');
 
-route::get('/katalog', function () {
+Route::get('/katalog', function () {
     return view('layouts.katalog');
 })->name('katalog');
+
+Route::get('/checkout', function () {
+    return view('layouts.checkout');
+})->name('checkout');
+
+Route::get('/payment', function () {
+    return view('layouts.payment');
+})->name('payment');
+
+// Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout.index');
+// Route::post('/checkout', [checkoutController::class, 'process'])->name('checkout.process');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
