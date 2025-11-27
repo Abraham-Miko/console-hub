@@ -35,16 +35,12 @@
                 <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                     <div>
-                        <label class="font-medium">Nama Depan*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1">
-                    </div>
-                    <div>
-                        <label class="font-medium">Nama Belakang*</label>
+                        <label class="font-medium">Nama Lengkap*</label>
                         <input class="w-full border rounded-lg p-2 mt-1">
                     </div>
 
-                    <div class="md:col-span-2">
-                        <label class="font-medium">Nomor HP*</label>
+                    <div>
+                        <label class="font-medium">NIK*</label>
                         <input class="w-full border rounded-lg p-2 mt-1">
                     </div>
 
@@ -54,18 +50,39 @@
                     </div>
 
                     <div>
-                        <label class="font-medium">Desa*</label>
+                        <label class="font-medium">No. Telepon*</label>
                         <input class="w-full border rounded-lg p-2 mt-1">
                     </div>
 
                     <div>
-                        <label class="font-medium">Kota*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1">
+                        <label class="font-medium">Jaminan Penyewa*</label>
+                        <select class="w-full border rounded-lg p-2 mt-1">
+                            <option value="" disabled selected hidden>- Pilih Jaminan -</option>
+                            <option>KTP</option>
+                            <option>KTM</option>
+                            <option>SIM</option>
+                            <option>STNK</option>
+                            <option>Passport</option>
+                        </select>
                     </div>
 
-                    <div class="md:col-span-2">
-                        <label class="font-medium">Kode Pos*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1">
+                    <div>
+                        <label class="font-medium">Tanggal Mulai*</label>
+                        <input class="w-full border rounded-lg p-2 mt-1" type="date">
+                    </div>
+
+                    <div>
+                        <label class="font-medium">Durasi Rental*</label>
+                        <select class="w-full border rounded-lg p-2 mt-1">
+                            <option value="" disabled selected hidden>- Pilih Durasi -</option>
+                            <option>1 hari</option>
+                            <option>2 hari</option>
+                            <option>3 hari</option>
+                            <option>4 hari</option>
+                            <option>5 hari</option>
+                            <option>6 hari</option>
+                            <option>7 hari</option>
+                        </select>
                     </div>
 
                 </form>
