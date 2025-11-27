@@ -11,7 +11,7 @@ use App\Http\Controllers\JenisMobilController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -21,16 +21,9 @@ Route::get('/verifikasi-pelanggan', function () {
     return view('admin.verifikasi-pelanggan');
 })->middleware(['auth', 'verified'])->name('verifikasi-pelanggan');
 
-Route::get('/order-summaries', function () {
-    return view('order-summaries');
-})->middleware(['auth', 'verified'])->name('order-summaries');
-
-Route::get('/katalog', function (Request $request) {
+route::get('/katalog', function () {
     return view('layouts.katalog');
-})->name('katalog.index');
-
-Route::get('/search', [SearchController::class, 'index']);  
-
+})->name('katalog');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

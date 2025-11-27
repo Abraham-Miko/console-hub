@@ -22,8 +22,8 @@ class UserController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'nama_depan' => ['required', 'string', 'max:255'],
-            'nama_belakang' => ['required', 'string', 'max:255'],
+            'nama_depan' => ['nullable', 'string', 'max:255'],
+            'nama_belakang' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'roles' => ['required', 'string'],
             'tanggal_lahir' => ['nullable', 'date'],
@@ -47,11 +47,11 @@ class UserController extends Controller
 
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'nama_depan' => ['required', 'string', 'max:255'],
-            'nama_belakang' => ['string', 'max:255', 'nullable'],
+            // 'nama_depan' => ['string', 'max:255'],
+            // 'nama_belakang' => ['string', 'max:255', 'nullable'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'roles' => ['required', 'string'],
-            'tanggal_lahir' => ['nullable', 'date'],
+            'date_of_birth' => ['nullable', 'date'],
             'password' => ['nullable', Rules\Password::defaults()],
         ]);
 
