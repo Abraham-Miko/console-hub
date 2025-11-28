@@ -5,14 +5,16 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+            required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Tanggal Lahir -->
         <div class="mt-4">
             <x-input-label for="date_of_birth" :value="__('Date of Birth')" />
-            <x-text-input id="date_of_birth" class="block mt-1 w-full" type="date" name="date_of_birth" :value="old('date_of_birth')" required />
+            <x-text-input id="date_of_birth" class="block mt-1 w-full" type="date" name="date_of_birth" :
+            value="old('date_of_birth')" required />
             <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
         </div>
 
@@ -45,7 +47,8 @@
                 <button type="button"
                         id="togglePassword"
                         data-target="password"
-                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700
+                        focus:outline-none">
                     <!-- Ikon mata tertutup -->
                     <img id="eyeClosed-password"
                             src="https://www.svgrepo.com/show/521651/eye-off.svg"
@@ -79,7 +82,8 @@
                 <button type="button"
                         id="togglePasswordConfirmation"
                         data-target="password_confirmation"
-                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500
+                        hover:text-gray-700 focus:outline-none">
                     <!-- Ikon mata tertutup -->
                     <img id="eyeClosed-password_confirmation"
                             src="https://www.svgrepo.com/show/521651/eye-off.svg"

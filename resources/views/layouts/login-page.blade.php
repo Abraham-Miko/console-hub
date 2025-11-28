@@ -1,35 +1,14 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<x-page-template>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <x-logo-and-title>sign in to your account</x-logo-and-title>
+        <hr class="w-64 border-gray-300 my-4">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-outfit text-black antialiased">
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md
+        overflow-hidden sm:rounded-lg">
+            {{ $slot }}
+        </div>
+    </div>
 
-        <a href="/" class="absolute top-4 right-4 text-gray-500 hover:text-blue-600 p-1 rounded-full transition duration-150" aria-label="Close">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </a>
-
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-white">
-
-
-            <x-logo-and-title>sign in to your account</x-logo-and-title>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
-    </body>
-</html>
+</x-page-template>
