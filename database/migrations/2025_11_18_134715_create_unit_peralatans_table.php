@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unit_mobils', function (Blueprint $table) {
-            $table->id('id_unit_mobil');
-            $table->foreignId('id_jenis_mobil');
-            $table->string('plat_nomor', 50)->unique();
+        Schema::create('unit_peralatans', function (Blueprint $table) {
+            $table->id('id_unit_peralatan');
+            $table->foreignId('id_jenis_peralatan');
+            $table->string('nomor_seri');
             $table->string('warna');
-            $table->enum('status_mobil', ['tersedia', 'dipesan', 'dirental', 'perawatan'])->default('tersedia');
+            $table->enum('kondisi', ['baik', 'rusak']);
+            $table->enum('status_peralatan', ['tersedia', 'dipesan', 'dirental', 'perawatan'])->default('tersedia');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unit_mobils');
+        Schema::dropIfExists('unit_peralatans');
     }
 };

@@ -1,6 +1,6 @@
 <x-login-page-layout>
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status class="mb-4" :status="session('status')"a />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -26,7 +26,8 @@
                 <x-input-label for="password" :value="__('Password')" />
 
                 @if (Route::has('password.request'))
-                    <a class="flex underline text-sm text-gray-600 hover:text-[#ff3c3c] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    <a class="flex underline text-sm text-gray-600 hover:text-[#ff3c3c] rounded-md focus:outline-none
+                    focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
@@ -43,7 +44,8 @@
                     <button type="button"
                             id="togglePassword"
                             data-target="password"
-                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700
+                            focus:outline-none">
                         <!-- Ikon mata tertutup -->
                         <img id="eyeClosed-password"
                                 src="https://www.svgrepo.com/show/521651/eye-off.svg"
