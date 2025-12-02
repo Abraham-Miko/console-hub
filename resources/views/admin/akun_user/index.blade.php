@@ -49,7 +49,7 @@
                                 </td>
                                 <td class="px-6 py-4">{{ $user->nama_depan }}</td>
                                 <td class="px-6 py-4">{{ $user->nama_belakang }}</td>
-                                <td class="px-6 py-4">{{ $user->tanggal_lahir }}</td>
+                                <td class="px-6 py-4">{{ $user->date_of_birth }}</td>
                                 <td class="px-6 py-4">
                                     <span class="px-2 py-1 text-xs font-semibold rounded-full
                                     @if($user->roles == 'admin') bg-red-400 text-white

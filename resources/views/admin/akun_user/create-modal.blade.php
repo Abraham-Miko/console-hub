@@ -3,7 +3,7 @@
 
     <div class="relative p-4 w-full max-w-md max-h-full">
 
-        <div class="relative bg-gray-800 border border-gray-700 rounded-lg shadow-2xl p-4 md:p-6 z-[10001]">
+        <div class="relative bg-gray-800 border border-gray-700 rounded-lg shadow-2xl p-4 md:p-6 z-[1000]">
 
             <div class="flex items-center justify-between border-b border-gray-700 pb-4 md:pb-5">
                 <h3 class="text-xl font-medium text-white">
@@ -58,8 +58,8 @@
                     </div>
 
                     <div class="col-span-2">
-                        <label for="tanggal_lahir" class="block mb-2.5 text-sm font-medium text-gray-300">Tanggal Lahir</label>
-                        <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="block mt-1 w-full" style="background-color: #2C3E50; color: white;" required>
+                        <label for="date_of_birth" class="block mb-2.5 text-sm font-medium text-gray-300">Tanggal Lahir</label>
+                        <input type="date" name="date_of_birth" id="date_of_birth" class="block mt-1 w-full" style="background-color: #2C3E50; color: white;" required>
                     </div>
 
                     <div class="col-span-2">

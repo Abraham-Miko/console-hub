@@ -7,7 +7,7 @@
 
             <div class="flex items-center justify-between border-b border-gray-700 pb-4 md:pb-5">
                 <h3 class="text-xl font-medium text-white">
-                    Tambah Mobil Baru </h3>
+                    Tambah Jenis Baru </h3>
 
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-700 hover:text-white rounded-lg text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="create-modal">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
@@ -15,7 +15,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('jenis_mobil.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('jenis_peralatan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
 
@@ -27,31 +27,37 @@
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="tahun" class="block mb-2.5 text-sm font-medium text-gray-300">Tahun</label>
-                        <input type="number" name="tahun" id="tahun" min="1990" max="{{ date('Y') }}" minlength="4" maxlength="4"
-                            class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
-                            placeholder="Contoh: 2020" required="">
-                    </div>
-
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="kapasitas" class="block mb-2.5 text-sm font-medium text-gray-300">Kapasitas (+supir)</label>
-                        <select id="kapasitas" name="kapasitas"
+                        <label for="kategori" class="block mb-2.5 text-sm font-medium text-gray-300">Kategori</label>
+                        <select id="kategori" name="kategori"
                             class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
-                            <option disabled selected="">- Pilih Kapasitas -</option>
-                            <option value="2">2</option>
-                            <option value="4">4</option>
-                            <option value="6">6</option>
-                            <option value="8">8</option>
+                            <option disabled selected="">- Pilih Kategori -</option>
+                            <option value="console">Console</option>
+                            <option value="vr">VR (Virtual Reality)</option>
+                            <option value="display">Display</option>
                         </select>
                     </div>
 
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="harga_rental_per_hari" class="block mb-2.5 text-sm font-medium text-gray-300">Harga/hari (Rp)</label>
+                        <input type="number" name="harga_rental_per_hari" id="harga_rental_per_hari" minlength="4"
+                            class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
+                            placeholder="Contoh: 50000" required="">
+                    </div>
+
                     <div class="col-span-2">
-                        <label for="foto_mobil" class="block mb-2.5 text-sm font-medium text-gray-300">Foto Mobil</label>
-                        <input class="cursor-pointer block w-full text-sm text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 shadow-sm p-2.5 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700" aria-describedby="file_input_help" id="file_input" type="file" name="foto_mobil">
-                        <p class="mt-1 text-sm text-gray-400" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 2MB).</p>
+                        <label for="deskripsi" class="block mb-2.5 text-sm font-medium text-gray-300">Deskripsi</label>
+                        <input type="textarea" name="deskripsi" id="deskripsi"
+                            class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
+                            placeholder="Catatan tambahan...">
+                    </div>
+
+                    <div class="col-span-2">
+                        <label for="foto_peralatan" class="block mb-2.5 text-sm font-medium text-gray-300">Foto Peralatan</label>
+                        <input class="cursor-pointer block w-full text-sm text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 shadow-sm p-2.5 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700" aria-describedby="file_input_help" id="file_input" type="file" name="foto_peralatan">
+                        <p class="mt-1 text-sm text-gray-400" id="file_input_help">PNG, JPG, or JPEG (MAX. 2MB).</p>
 
                         <div id="dropzone-area" class="mt-2 flex flex-col items-center justify-center w-full h-64 bg-gray-700 border-2 border-dashed border-gray-600 rounded-lg">
-                            <img id="image-preview" src="#" alt="Preview Mobil" class="hidden w-full h-full object-cover rounded-lg p-2" />
+                            <img id="image-preview" src="#" alt="Preview Peralatan" class="hidden w-full h-full object-cover rounded-lg p-2" />
                             <div id="default-content" class="flex flex-col items-center justify-center text-white pt-5 pb-6">
                                 </div>
                         </div>

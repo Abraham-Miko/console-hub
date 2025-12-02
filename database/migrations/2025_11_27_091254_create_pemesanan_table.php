@@ -13,20 +13,24 @@ return new class extends Migration
     {
         Schema::create('pemesanan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mobil_id')->constrained('mobil');
+            $table->foreignId('id_unit_peralatan');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('nama_penyewa');
-            $table->string('nik_penyewa', 11);
+            $table->string('nik_penyewa', 18);
             $table->string('telepon_penyewa', 15);
             $table->string('alamat_penyewa', 100);
-            $table->enum('jaminan_penyewa', ['paspor', 'stnk', 'bpkb', 'sim']);
-            $table->dateTime('tgl_mulai');
-            $table->dateTime('tgl_selesai');
+            $table->enum('jaminan_penyewa', ['ktp', 'stnk', 'bpkb', 'sim']);
+            $table->string('foto_ktp_sim');
+            $table->date('tgl_mulai');
+            $table->integer('durasi_rental');
+            $table->date('tgl_selesai');
             $table->decimal('total_biaya', 10, 2)->default(0);
             $table->uuid('verification_token')->unique();
-            $table->enum('status_pemesanan', ['dipesan', 'sedang_dirental', 'selesai', 'dibatalkan'])
+            $table->enum('status_pemesanan', ['dipesan', 'dirental', 'selesai', 'dibatalkan'])
                   ->default('dipesan');
             $table->foreignId('diserahkan_oleh')->nullable()->constrained('users');
             $table->timestamp('tgl_verifikasi')->nullable();
+            $table->dateTime('tgl_kembali_aktual')->nullable();
             $table->timestamps();
         });
     }

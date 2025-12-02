@@ -75,11 +75,11 @@
                     </div>
 
                     <div class="col-span-2">
-                        <label for="tanggal_lahir-{{ $user->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Tanggal Lahir</label>
-                        <input type="date" name="tanggal_lahir" id="tanggal_lahir-{{ $user->id }}"
+                        <label for="date_of_birth-{{ $user->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Tanggal Lahir</label>
+                        <input type="date" name="date_of_birth" id="date_of_birth-{{ $user->id }}"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5"
-                            required value="{{ old('tanggal_lahir', $user->tanggal_lahir) }}">
-                        @error('tanggal_lahir')
+                            required value="{{ old('date_of_birth', $user->date_of_birth) }}">
+                        @error('date_of_birth')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
