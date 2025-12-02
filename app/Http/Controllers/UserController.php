@@ -26,7 +26,7 @@ class UserController extends Controller
             'nama_belakang' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'roles' => ['required', 'string'],
-            'tanggal_lahir' => ['nullable', 'date'],
+            'date_of_birth' => ['nullable', 'date'],
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
@@ -51,7 +51,7 @@ class UserController extends Controller
             'nama_belakang' => ['string', 'max:255', 'nullable'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'roles' => ['required', 'string'],
-            'tanggal_lahir' => ['nullable', 'date'],
+            'date_of_birth' => ['nullable', 'date'],
             'password' => ['nullable', Rules\Password::defaults()],
         ]);
 

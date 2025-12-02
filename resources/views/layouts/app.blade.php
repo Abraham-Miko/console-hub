@@ -21,29 +21,24 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <style>
-            /* 1. Memastikan Konten Scanner Terpusat */
         #reader div {
-            /* Mengatasi masalah perataan di dalam wadah scanner */
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Vertikal tengah */
-            align-items: center;    /* Horizontal tengah */
+            justify-content: center;
+            align-items: center;
             text-align: center;
             }
 
-        /* 2. Mengganti Warna Font (Contoh: Putih) */
         #reader span,
         #reader a,
         #reader label,
         #reader select {
             /* Mengganti warna teks, penting untuk dark mode */
-            color: white !important; /* Gunakan !important jika tertimpa Tailwind/Flowbite */
+            color: white !important;
             text-decoration: none !important;
         }
 
-        /* 3. Menyesuaikan Padding (Opsional) */
         #reader {
-            /* Memastikan elemen div eksternal memiliki ruang yang cukup */
             padding: 20px;
         }
         .btn-crud {
@@ -57,6 +52,10 @@
     <body class="font-sans antialiased">
 
             {{-- Backdrop Manual Sidebar --}}
+            <div id="backdrop-overlay"
+                class="overflow-y-auto overflow-x-hidden hidden fixed top-0 right-0 left-0 justify-center z-40 items-center bg-gray-700 opacity-5 w-full inset-0" style="opacity: 0.8;">
+            </div>
+
             <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
@@ -74,6 +73,7 @@
             <!-- Page Content -->
             <main>
                 {{-- @yield('content') --}}
+                {{ $slot }}
             </main>
         </div>
         {{-- CDN --}}
@@ -85,93 +85,19 @@
 
             toggleEl.addEventListener('click', () => {
                 console.log('tes');
-            const sidebar = document.getElementById('logo-sidebar');
-            const backdrop = document.getElementById('backdrop-overlay');
-            const isHidden = sidebar.classList.contains('hidden');
+                const sidebar = document.getElementById('logo-sidebar');
+                const backdrop = document.getElementById('backdrop-overlay');
+                const isHidden = sidebar.classList.contains('hidden');
 
-            if (isHidden) {
-                sidebar.classList.remove('hidden');
-                backdrop.classList.remove('hidden');
+                if (isHidden) {
+                    sidebar.classList.remove('hidden');
+                    backdrop.classList.remove('hidden');
 
-            } else {
-                sidebar.classList.add('hidden');
-                backdrop.classList.add('hidden');
-            }
-        });
-
-        // Chart Settings
-        const options = {
-        chart: {
-            height: "100%",
-            maxWidth: "100%",
-            type: "area",
-            fontFamily: "Inter, sans-serif",
-            dropShadow: {
-            enabled: false,
-            },
-            toolbar: {
-            show: false,
-            },
-        },
-        tooltip: {
-            enabled: true,
-            x: {
-            show: false,
-            },
-        },
-        fill: {
-            type: "gradient",
-            gradient: {
-            opacityFrom: 0.55,
-            opacityTo: 0,
-            shade: "#1C64F2",
-            gradientToColors: ["#1C64F2"],
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            width: 6,
-        },
-        grid: {
-            show: false,
-            strokeDashArray: 4,
-            padding: {
-            left: 2,
-            right: 2,
-            top: 0
-            },
-        },
-        series: [
-            {
-            name: "New users",
-            data: [6500, 6418, 6456, 6526, 6356, 6456],
-            color: "#1A56DB",
-            },
-        ],
-        xaxis: {
-            categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'],
-            labels: {
-            show: false,
-            },
-            axisBorder: {
-            show: false,
-            },
-            axisTicks: {
-            show: false,
-            },
-        },
-        yaxis: {
-            show: false,
-        },
-        }
-
-        if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
-        const chart = new ApexCharts(document.getElementById("area-chart"), options);
-        chart.render();
-        }
-
+                } else {
+                    sidebar.classList.add('hidden');
+                    backdrop.classList.add('hidden');
+                }
+            });
         </script>
     </body>
 </html>

@@ -4,8 +4,8 @@
         <div class="rounded-lg p-6">
             <div class="sm:ml-64 bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg p-6">
                 <div class="flex justify-between items-center mb-10">
-                    <p class="text-4xl font-semibold dark:text-white">Jenis Mobil</p>
-                    <x-secondary-button data-modal-target="create-modal" data-modal-toggle="create-modal">+ Tambah Jenis Mobil</x-secondary-button>
+                    <p class="text-4xl font-semibold dark:text-white">Jenis Peralatan</p>
+                    <x-secondary-button data-modal-target="create-modal" data-modal-toggle="create-modal">+ Tambah Jenis Peralatan</x-secondary-button>
                 </div>
 
                 @if (session()->has('success'))
@@ -53,23 +53,25 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">Gambar</th>
+                                <th scope="col" class="px-6 py-3">Kategori</th>
                                 <th scope="col" class="px-6 py-3">Merek</th>
-                                <th scope="col" class="px-6 py-3">Tahun</th>
-                                <th scope="col" class="px-6 py-3">Kapasitas</th>
+                                <th scope="col" class="px-6 py-3">Harga/hari</th>
+                                <th scope="col" class="px-6 py-3">Deskripsi</th>
                                 <th scope="col" class="px-6 py-3">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($jenis_mobils as $jenis_mobil)
+                            @foreach ($jenis_peralatans as $jenis_peralatan)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td class="px-6 py-4">
-                                    <img src="{{ asset('storage/jenis_mobil/' . $jenis_mobil->foto_mobil) }}" class="w-32 h-32 object-cover rounded" alt="{{ $jenis_mobil->merek }}">
+                                    <img src="{{ asset('storage/jenis_peralatan/' . $jenis_peralatan->foto_peralatan) }}" class="w-32 h-32 object-cover rounded" alt="{{ $jenis_peralatan->merek }}">
                                 </td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $jenis_mobil->merek }}
+                                    {{ ucwords($jenis_peralatan->kategori) }}
                                 </td>
-                                <td class="px-6 py-4">{{ $jenis_mobil->tahun }}</td>
-                                <td class="px-6 py-4">{{ $jenis_mobil->kapasitas }}</td>
+                                <td class="px-6 py-4">{{ $jenis_peralatan->merek }}</td>
+                                <td class="px-6 py-4">Rp.{{ $jenis_peralatan->harga_rental_per_hari }}</td>
+                                <td class="px-6 py-4">{{ $jenis_peralatan->deskripsi }}</td>
                                 {{-- <td class="px-6 py-4">
                                     <span class="px-2 py-1 text-xs font-semibold rounded-full
                                     @if($jenis_mobil->status_kendaraan == 'tersedia') bg-green-100 text-green-800
@@ -81,9 +83,9 @@
                                 </td> --}}
                                 <td class="px-6 py-4">
                                     <div class="flex space-x-2 items-center">
-                                        <button data-modal-target="edit-modal-{{ $jenis_mobil->id_jenis_mobil }}" data-modal-toggle="edit-modal-{{ $jenis_mobil->id_jenis_mobil }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                        <button data-modal-target="edit-modal-{{ $jenis_peralatan->id_jenis_peralatan }}" data-modal-toggle="edit-modal-{{ $jenis_peralatan->id_jenis_peralatan }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
 
-                                        <form action="{{ route('jenis_mobil.destroy', $jenis_mobil->id_jenis_mobil) }}" method="POST" id="delete-form-{{ $jenis_mobil->id_jenis_mobil }}" onsubmit="event.preventDefault(); confirmDelete('delete-form-{{ $jenis_mobil->id_jenis_mobil }}');">
+                                        <form action="{{ route('jenis_peralatan.destroy', $jenis_peralatan->id_jenis_peralatan) }}" method="POST" id="delete-form-{{ $jenis_peralatan->id_jenis_peralatan }}" onsubmit="event.preventDefault(); confirmDelete('delete-form-{{ $jenis_peralatan->id_jenis_peralatan }}');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</button>
@@ -92,7 +94,7 @@
 
                                 </td>
                             </tr>
-                            @include('admin.jenis_mobil.edit-modal',['jenis_mobil' => $jenis_mobil])
+                            @include('admin.jenis_peralatan.edit-modal',['jenis_peralatan' => $jenis_peralatan])
                             @endforeach
                         </tbody>
                     </table>
@@ -100,7 +102,7 @@
             </div>
         </div>
     </div>
-@include('admin.jenis_mobil.create-modal')
+@include('admin.jenis_peralatan.create-modal')
 </x-app-layout>
 
 <script>

@@ -7,7 +7,7 @@
 
             <div class="flex items-center justify-between border-b border-gray-700 pb-4 md:pb-5">
                 <h3 class="text-xl font-medium text-white">
-                    Tambah Mobil Baru </h3>
+                    Tambah Peralatan Baru </h3>
 
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-700 hover:text-white rounded-lg text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="create-modal">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
@@ -15,28 +15,28 @@
                 </button>
             </div>
 
-            <form action="{{ route('unit_mobil.store') }}" method="POST">
+            <form action="{{ route('unit_peralatan.store') }}" method="POST">
                 @csrf
                 <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
 
                     <div class="col-span-2">
-                        <label for="id_jenis_mobil" class="block mb-2.5 text-sm font-medium text-gray-300">Jenis Mobil</label>
-                        <select id="id_jenis_mobil" name="id_jenis_mobil"
+                        <label for="id_jenis_peralatan" class="block mb-2.5 text-sm font-medium text-gray-300">Jenis Peralatan</label>
+                        <select id="id_jenis_peralatan" name="id_jenis_peralatan"
                             class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400" required>
-                            <option disabled selected value="">- Pilih Jenis Mobil -</option>
+                            <option disabled selected value="">- Pilih Jenis Peralatan -</option>
 
-                            @foreach ($jenisMobils as $jenisMobil)
-                                <option value="{{ $jenisMobil->id_jenis_mobil }}">{{ $jenisMobil->merek }} ({{ $jenisMobil->tahun }})</option>
+                            @foreach ($jenisPeralatans as $jenisPeralatan)
+                                <option value="{{ $jenisPeralatan->id_jenis_peralatan }}">{{ $jenisPeralatan->merek }} ({{ ucfirst($jenisPeralatan->kategori) }})</option>
                             @endforeach
 
                         </select>
                     </div>
 
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="plat_nomor" class="block mb-2.5 text-sm font-medium text-gray-300">Plat Nomor</label>
-                        <input type="text" name="plat_nomor" id="plat_nomor"
+                    <div class="col-span-2">
+                        <label for="nomor_seri" class="block mb-2.5 text-sm font-medium text-gray-300">Nomor Seri</label>
+                        <input type="text" name="nomor_seri" id="nomor_seri"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
-                            placeholder="Contoh: AG 6279 OBY" required="">
+                            placeholder="Contoh: 4516" required="">
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
@@ -46,9 +46,18 @@
                             placeholder="Contoh: Biru, Merah" required="">
                     </div>
 
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="kondisi" class="block mb-2.5 text-sm font-medium text-gray-300">Kondisi</label>
+                        <select id="kondisi" name="kondisi"
+                            class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400" required>
+                            <option value="baik">Baik</option>
+                            <option value="rusak">Rusak</option>
+                        </select>
+                    </div>
+
                     <div class="col-span-2">
-                        <label for="status_mobil" class="block mb-2.5 text-sm font-medium text-gray-300">Status Mobil</label>
-                        <select id="status_mobil" name="status_mobil"
+                        <label for="status_peralatan" class="block mb-2.5 text-sm font-medium text-gray-300">Status Peralatan</label>
+                        <select id="status_peralatan" name="status_peralatan"
                             class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400" required>
                             <option value="tersedia">Tersedia</option>
                             <option value="dipesan">Dipesan</option>
@@ -61,7 +70,7 @@
 
                 <div class="flex items-center space-x-4 border-t border-gray-700 pt-4 md:pt-6">
                     <x-primary-button>
-                        {{ __('Simpan Mobil') }}
+                        {{ __('Simpan Peralatan') }}
                     </x-primary-button>
 
                     <button data-modal-hide="create-modal" type="button"

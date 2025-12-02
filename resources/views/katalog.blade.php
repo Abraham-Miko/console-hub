@@ -9,18 +9,6 @@
 
 <body class="bg-gray-50 text-gray-900">
 
-    {{-- NAVBAR --}}
-    <nav class="w-full py-4 bg-transparent">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div href="/" class="">
-                <x-main-logo/>
-            </div>
-
-            <div>
-                <a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900 text-md">Log in &raquo;</a>
-            </div>
-        </div>
-    </nav>
   <section class="bg-yellow-100 pt-10 pb-20 relative overflow-hidden">
     <div class="max-w-5xl mx-auto text-center px-6">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">
