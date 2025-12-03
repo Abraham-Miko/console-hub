@@ -23,16 +23,11 @@ Route::get('/verifikasi-pelanggan', function () {
     return view('admin.verifikasi.verifikasi-pelanggan');
 })->middleware(['auth', 'verified'])->name('verifikasi-pelanggan');
 
-Route::get('/katalog', function () {
-    return view('layouts.katalog');
-})->name('katalog');
+Route::get('/katalog', [JenisPeralatanController::class, 'katalog'])->name('katalog');
 
 Route::get('/checkout', function () {
     return view('layouts.checkout');
 })->name('checkout');
-Route::get('/histori-rental', function (Request $request) {
-    return view('layouts.histori-rental');
-})->name('histori-rental.index');
 
 Route::get('/search', [SearchController::class, 'index']);
 
@@ -59,13 +54,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/api/verifikasi/detail/{token}', [VerifikasiController::class, 'getDetailByToken'])
     ->name('api.verifikasi.detail');
-    // Route Serah Terima (Ubah ke Dirental)
+
     Route::patch('/pemesanan/konfirmasi/{pemesanan}', [PemesananController::class, 'konfirmasiAksi'])
         ->name('pemesanan.serah_terima');
 
-    // Route Pengembalian (Ubah ke Selesai)
     Route::patch('/pemesanan/pengembalian/{pemesanan}', [PemesananController::class, 'konfirmasiAksi'])
         ->name('pemesanan.pengembalian');
+
+    Route::get('/histori-rental', [PemesananController::class, 'historiRental']);
 });
 
 require __DIR__.'/auth.php';

@@ -97,4 +97,16 @@ class JenisPeralatanController extends Controller
 
         return redirect()->route('jenis_peralatan.index')->with('success', 'Jenis peralatan berhasil dihapus.');
     }
+
+    public function katalog() {
+        $allJenis = JenisPeralatan::withCount(['unit_peralatans as stok_tersedia' => function ($query) {
+            $query->where('status_peralatan', 'tersedia');
+        }])
+        ->with(['unit_peralatans' => function ($query) {
+            $query->where('status_peralatan', 'tersedia')->limit(5);
+        }])
+        ->get();
+
+        return view('layouts.katalog', compact('allJenis'));
+    }
 }
