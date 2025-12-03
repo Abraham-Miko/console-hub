@@ -60,5 +60,17 @@
             </a>
          </li>
       </ul>
+      <ul class="space-y-2 font-medium border-t border-default pt-4 mt-4">
+         <li>
+            <a href="{{ route('welcome') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+                </svg>
+
+
+               <span class="flex-1 ms-3 whitespace-nowrap">Halaman User</span>
+            </a>
+         </li>
+      </ul>
    </div>
 </aside>

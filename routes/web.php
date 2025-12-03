@@ -55,6 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/verifikasi/detail/{token}', [VerifikasiController::class, 'getDetailByToken'])
     ->name('api.verifikasi.detail');
 
+    Route::get('/api/riwayat/detail/{id}', [PemesananController::class, 'getDetailRiwayat'])
+    ->name('api.riwayat.detail');
+
     Route::patch('/pemesanan/konfirmasi/{pemesanan}', [PemesananController::class, 'konfirmasiAksi'])
         ->name('pemesanan.serah_terima');
 

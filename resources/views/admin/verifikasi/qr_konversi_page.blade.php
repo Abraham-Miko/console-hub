@@ -27,6 +27,8 @@
                 level: 'H' // Tingkat koreksi error tinggi
             });
 
+            const returnUrl = '{{ $returnTo }}';
+
             // 4. Konversi Canvas ke Data URL PNG dan Download
             // (Perlu sedikit penundaan untuk memastikan rendering selesai)
             setTimeout(() => {
@@ -44,8 +46,26 @@
                 document.body.removeChild(a);
                 document.body.removeChild(canvasElement);
 
-                // 5. Redirect Kembali ke Index Pemesanan
-                window.location.href = '{{ route('pemesanan.index') }}';
+                // 1. Tentukan URL Tujuan
+                let redirectPath;
+
+                // Cek apakah URL sebelumnya mengandung '/histori-rental'
+                if (returnUrl.includes('/histori-rental')) {
+                    // Redirect ke Histori Rental, mempertahankan query parameter (misalnya ?open_modal=123)
+                    redirectPath = returnUrl;
+                }
+                // Cek apakah URL sebelumnya mengandung '/pemesanan'
+                else if (returnUrl.includes('/pemesanan')) {
+                    // Redirect ke Index Pemesanan
+                    redirectPath = '{{ route('pemesanan.index') }}';
+                }
+                // Jika tidak ada yang cocok, fallback ke Dashboard atau Index utama
+                else {
+                    redirectPath = '/dashboard';
+                }
+
+                // 2. Redirect
+                window.location.href = redirectPath;
             }, 100);
         });
     </script>
