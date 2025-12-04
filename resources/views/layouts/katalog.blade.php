@@ -94,77 +94,77 @@
 
         <div class="flex justify-between items-center">
             <span class="text-lg font-bold hargaPerHari">{{ $jenis->harga_rental_per_hari }}</span>
-            <button class="text-white px-4 py-2 rounded-lg
+            <a href="{{ route('pemesanan.checkout', $jenis->id_jenis_peralatan) }}" class="text-white px-4 py-2 rounded-lg
              @if ($jenis->stok_tersedia > 0) bg-blue-600 hover:bg-blue-400"
              @else bg-gray-400 cursor-not-allowed" disabled
              @endif
-             >Sewa</button>
+             >Sewa</a>
         </div>
         </div>
     @endforeach
   </section>
 
-</body>
-<script>
-    const formatRupiah = (angka) => {
-        new Intl.NumberFormat('id-ID').format(angka);
-        const formattedNumber = new Intl.NumberFormat('id-ID', {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        }).format(Number(angka));
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script>
+        const formatRupiah = (angka) => {
+            new Intl.NumberFormat('id-ID').format(angka);
+            const formattedNumber = new Intl.NumberFormat('id-ID', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(Number(angka));
 
-        return `Rp. ${formattedNumber} / hari`;
-    }
+            return `Rp. ${formattedNumber} / hari`;
+        }
 
-    const searchInput = document.getElementById('search-input');
-    const filterButtons = document.querySelectorAll('[data-filter]');
-    const allCards = document.querySelectorAll('.rounded-xl.shadow-md');
+        const searchInput = document.getElementById('search-input');
+        const filterButtons = document.querySelectorAll('[data-filter]');
+        const allCards = document.querySelectorAll('.rounded-xl.shadow-md');
 
-    function applyFilters() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        const activeCategory = document.querySelector('.filter-active')?.getAttribute('data-filter') || 'semua';
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const activeCategory = document.querySelector('.filter-active')?.getAttribute('data-filter') || 'semua';
 
-        allCards.forEach(card => {
-            const cardCategory = card.getAttribute('data-kategori');
-            const cardSearchData = card.getAttribute('data-searchable');
+            allCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-kategori');
+                const cardSearchData = card.getAttribute('data-searchable');
 
-            const categoryMatch = activeCategory === 'semua' || cardCategory === activeCategory;
+                const categoryMatch = activeCategory === 'semua' || cardCategory === activeCategory;
 
-            const searchMatch = cardSearchData.includes(searchTerm);
+                const searchMatch = cardSearchData.includes(searchTerm);
 
-            if (categoryMatch && searchMatch) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const hargaElements = document.querySelectorAll('.hargaPerHari');
-        hargaElements.forEach(span => {
-            const rawValue = span.textContent.trim();
-            span.textContent = formatRupiah(rawValue);
-        });
-
-        searchInput.addEventListener('input', applyFilters);
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('bg-red-500', 'text-white', 'filter-active');
-                    btn.classList.add('bg-gray-200');
-                });
-
-                this.classList.add('bg-red-500', 'text-white', 'filter-active');
-                this.classList.remove('bg-gray-200');
-
-                applyFilters();
+                if (categoryMatch && searchMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
             });
-        });
+        }
 
-        // Terapkan filter awal pada kategori 'Semua'
-        document.querySelector('[data-filter="semua"]').click();
-    });
-</script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hargaElements = document.querySelectorAll('.hargaPerHari');
+            hargaElements.forEach(span => {
+                const rawValue = span.textContent.trim();
+                span.textContent = formatRupiah(rawValue);
+            });
+
+            searchInput.addEventListener('input', applyFilters);
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-red-500', 'text-white', 'filter-active');
+                        btn.classList.add('bg-gray-200');
+                    });
+
+                    this.classList.add('bg-red-500', 'text-white', 'filter-active');
+                    this.classList.remove('bg-gray-200');
+
+                    applyFilters();
+                });
+            });
+
+            // Terapkan filter awal pada kategori 'Semua'
+            document.querySelector('[data-filter="semua"]').click();
+        });
+    </script>
 </x-page-template>

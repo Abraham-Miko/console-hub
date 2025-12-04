@@ -55,6 +55,7 @@ class PemesananController extends Controller
     }
 
     public function store(Request $request) {
+        // dd($request);
         $validatedData = $request->validate([
             'id_unit_peralatan' => ['required'],
             'nama_penyewa' => ['required', 'string', 'max:255'],
@@ -62,15 +63,31 @@ class PemesananController extends Controller
             'telepon_penyewa' => ['required', 'max:13'],
             'alamat_penyewa' => ['required'],
             'jaminan_penyewa' => ['required'],
-            'status_pemesanan' => ['required'],
+            'status_pemesanan' => ['nullable'],
             'foto_ktp_sim' => ['image', 'mimes:jpeg,jpg,png', 'max:2048'],
             'tgl_mulai' => ['required'],
             'durasi_rental' => ['required', 'integer'],
             'tgl_selesai' => ['required'],
+            'pengiriman' => ['required'],
+            'pembayaran' => ['required'],
+            'bukti_pembayaran' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
             'total_biaya' => ['required'],
         ]);
 
         $data = $validatedData;
+        // dd($data);
+
+        if ($request->hasFile('bukti_pembayaran')) {
+            $extension = $request->file('bukti_pembayaran')->getClientOriginalExtension();
+            $filename = Str::uuid() . '.' . $extension;
+            $destinationPath = storage_path('app/public/bukti_pembayaran');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0775, true);
+            }
+            $request->file('bukti_pembayaran')->move($destinationPath, $filename);
+
+            $data['bukti_pembayaran'] = $filename;
+        }
 
         if ($request->hasFile('foto_ktp_sim')) {
             $extension = $request->file('foto_ktp_sim')->getClientOriginalExtension();
@@ -121,7 +138,18 @@ class PemesananController extends Controller
             }
         }
 
-        return redirect()->route('pemesanan.index')->with('success', 'Pemesanan baru berhasil ditambahkan.');
+        $user = Auth::user();
+
+        if ($request->has('redirect_to_histori')) {
+            $redirectRoute = 'histori.index';
+        } elseif ($user && $user->roles === 'admin') {
+            // 2. Jika tidak ada input khusus dan user adalah admin, arahkan ke manajemen
+            $redirectRoute = 'pemesanan.index';
+        } else {
+            $redirectRoute = 'histori.index';
+        }
+
+        return redirect()->route($redirectRoute)->with('success', 'Pemesanan baru berhasil ditambahkan.');
     }
 
     public function update(Request $request, Pemesanan $pemesanan) {
@@ -138,11 +166,37 @@ class PemesananController extends Controller
             'tgl_mulai' => ['required'],
             'durasi_rental' => ['required', 'integer'],
             'tgl_selesai' => ['required'],
+            'pengiriman' => ['required'],
+            'pembayaran' => ['required'],
+            'bukti_pembayaran' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
             'total_biaya' => ['required'],
         ]);
 
         $data = $validatedData;
         // dd($data);
+        if($request->hasFile('bukti_pembayaran')) {
+            if($pemesanan->bukti_pembayaran) {
+                $pathFotoLengkap = 'bukti_pembayaran' . '/' . $pemesanan->bukti_pembayaran;
+                if(Storage::disk('public')->exists($pathFotoLengkap)) {
+                    Storage::disk('public')->delete($pathFotoLengkap);
+                }
+            }
+            $file = $request->file('bukti_pembayaran');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::uuid() . '.' . $extension;
+
+            $destinationPath = storage_path('app/public/bukti_pembayaran');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0775, true);
+            }
+
+            $file->move($destinationPath, $filename);
+            $data['bukti_pembayaran'] = $filename;
+        } else {
+            unset($data['bukti_pembayaran']);
+        }
+
         if($request->hasFile('foto_ktp_sim')) {
             if($pemesanan->foto_ktp_sim) {
                 $pathFotoLengkap = 'pemesanan' . '/' . $pemesanan->foto_ktp_sim;
@@ -214,6 +268,14 @@ class PemesananController extends Controller
                 }
             }
             // Jika ada pemesanan aktif lain, biarkan status unit tetap (dipesan/dirental).
+        }
+
+        if ($pemesanan->bukti_pembayaran) {
+            $pathFotoLengkap = 'bukti_pembayaran' . '/' . $pemesanan->bukti_pembayaran;
+
+            if (Storage::disk('public')->exists($pathFotoLengkap)) {
+                Storage::disk('public')->delete($pathFotoLengkap);
+            }
         }
 
         if ($pemesanan->foto_ktp_sim) {
@@ -302,5 +364,14 @@ class PemesananController extends Controller
             'success' => true,
             'pemesanan' => $pemesanan
         ]);
+    }
+
+    public function showCheckoutForm(JenisPeralatan $jenis_peralatan) {
+        $availableUnits = UnitPeralatan::with('jenis_peralatan')
+                                    ->where('id_jenis_peralatan', $jenis_peralatan->id_jenis_peralatan)
+                                    ->where('status_peralatan', 'tersedia')
+                                    ->first();
+
+        return view('layouts.checkout', compact('jenis_peralatan', 'availableUnits'));
     }
 }
