@@ -235,7 +235,7 @@
                 </div>
 
                 <button class="w-full bg-[#ffa602] text-black hover:text-white py-3 rounded-lg text-center font-semibold">
-                    Continue to payment
+                    Checkout
                 </button>
             </div>
         </div>
