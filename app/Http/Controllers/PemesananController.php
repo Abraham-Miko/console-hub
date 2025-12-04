@@ -229,10 +229,10 @@ class PemesananController extends Controller
         return redirect()->route('pemesanan.index')->with('success', 'Pemesanan berhasil dihapus.');
     }
 
-    public function downloadQrCode($token) {
-        return view('admin.verifikasi.qr_konversi_page', [
-                'token' => $token
-            ]);
+    public function downloadQrCode(Request $request, $token) {
+        $returnTo = $request->query('return_to') ?? route('pemesanan.index');
+
+        return view('admin.verifikasi.qr_konversi_page', compact('token', 'returnTo'));
     }
 
     public function konfirmasiAksi(Request $request, Pemesanan $pemesanan) {
@@ -282,5 +282,25 @@ class PemesananController extends Controller
         });
 
         return redirect()->route('verifikasi-pelanggan')->with('success', $message);
+    }
+
+    public function historiRental() {
+        $userId = Auth::id();
+        $selectHistoriUser = Pemesanan::with('unitPeralatan.jenis_peralatan')->where('user_id', $userId)->latest()->get();
+
+        return view('layouts.histori-rental', compact('selectHistoriUser'));
+    }
+
+    public function getDetailRiwayat($id) {
+        $pemesanan = Pemesanan::with('unitPeralatan.jenis_peralatan')->where('id', $id)->first();
+
+        if (!$pemesanan) {
+            return response()->json(['success' => false, 'message' => 'Id tidak valid.'], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'pemesanan' => $pemesanan
+        ]);
     }
 }

@@ -31,8 +31,7 @@ class Pemesanan extends Model
         'tgl_kembali_aktual'
     ];
 
-    public function UnitPeralatan()
-    {
+    public function UnitPeralatan() {
         return $this->belongsTo(UnitPeralatan::class, 'id_unit_peralatan');
     }
 }
