@@ -41,78 +41,89 @@
     <div class="container mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         <!-- LEFT SIDE FORM -->
-        <div class="lg:col-span-2 space-y-6">
 
+        <div class="lg:col-span-2 space-y-6">
+        <form action="{{ route('pemesanan.store') }}" id="checkout-form" method="POST" enctype="multipart/form-data">
+            @csrf
             <!-- Billing Address -->
             <div class="bg-white p-6 rounded-xl shadow">
                 <h2 class="text-2xl font-bold mb-4 uppercase">Checkout</h2>
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {{-- @foreach ($availableUnits as $unit) --}}
+                        <input type="hidden" name="redirect_to_histori" value="1">
+                        <input type="hidden" name="id_unit_peralatan" id="id_unit_peralatan" value="{{ $availableUnits->id_unit_peralatan }}">
+                    {{-- @endforeach --}}
                     <div>
-                        <label class="font-medium">Nama Lengkap*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1">
+                        <label for="nama_penyewa" class="font-medium">Nama Lengkap*</label>
+                        <input class="w-full border rounded-lg p-2 mt-1" name="nama_penyewa" id="nama_penyewa">
                     </div>
 
                     <div>
-                        <label class="font-medium">NIK*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1">
+                        <label for="nik_penyewa" font-medium">NIK*</label>
+                        <input class="w-full border rounded-lg p-2 mt-1" name="nik_penyewa" id="nik_penyewa">
                     </div>
 
                     <div class="md:col-span-2">
-                        <label class="font-medium">Alamat Lengkap*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1">
+                        <label for="alamat_penyewa" class="font-medium">Alamat Lengkap*</label>
+                        <input class="w-full border rounded-lg p-2 mt-1" name="alamat_penyewa" id="alamat_penyewa">
                     </div>
 
                     <div>
-                        <label class="font-medium">No. Telepon*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1">
+                        <label for="telepon_penyewa" class="font-medium">No. Telepon*</label>
+                        <input class="w-full border rounded-lg p-2 mt-1" name="telepon_penyewa" id="telepon_penyewa">
                     </div>
 
                     <div>
-                        <label class="font-medium">Jaminan Penyewa*</label>
-                        <select class="w-full border rounded-lg p-2 mt-1">
+                        <label for="jaminan_penyewa" class="font-medium">Jaminan Penyewa*</label>
+                        <select class="w-full border rounded-lg p-2 mt-1" name="jaminan_penyewa" id="jaminan_penyewa">
                             <option value="" disabled selected hidden>- Pilih Jaminan -</option>
-                            <option>KTP</option>
-                            <option>KTM</option>
-                            <option>SIM</option>
-                            <option>STNK</option>
-                            <option>Passport</option>
+                            <option value="ktp">KTP</option>
+                            <option value="ktm">KTM</option>
+                            <option value="stnk">STNK</option>
+                            <option value="sim">SIM</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="font-medium">Tanggal Mulai*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1" type="date">
+                        <label for="tgl_mulai" class="font-medium">Tanggal Mulai*</label>
+                        <input class="w-full border rounded-lg p-2 mt-1" type="date" name="tgl_mulai" id="tgl_mulai">
                     </div>
 
                     <div>
                         <label class="font-medium">Durasi Rental*</label>
-                        <select class="w-full border rounded-lg p-2 mt-1">
-                            <option value="" disabled selected hidden>- Pilih Durasi -</option>
-                            <option>1 hari</option>
-                            <option>2 hari</option>
-                            <option>3 hari</option>
-                            <option>4 hari</option>
-                            <option>5 hari</option>
-                            <option>6 hari</option>
-                            <option>7 hari</option>
-                        </select>
-                    </div>
 
-                </form>
-            </div>
+                        <div class="relative flex items-center max-w-[11rem] shadow-xs rounded-base p-1">
+                            <button type="button" id="decrement-button" data-input-counter-decrement="durasi_rental" class="rounded text-body bg-neutral-secondary-medium box-border border border-default-medium border-gray-500 hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-s-base text-sm px-3 focus:outline-none h-10">
+                                <svg class="w-4 h-4 text-heading" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/></svg>
+                            </button>
+                            <input type="text" id="durasi_rental" name="durasi_rental" data-input-counter data-input-counter-min="1" data-input-counter-max="7" aria-describedby="helper-text-explanation" class="border-x-0 h-10 placeholder:text-heading text-heading text-center w-full bg-neutral-secondary-medium border-default-medium py-2.5 placeholder:text-body block pb-6 text-xs" placeholder="" value="1" required />
+                            <div class="absolute bottom-1 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-body-subtle space-x-1 rtl:space-x-reverse">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/></svg>
+                                <span>Hari</span>
+                            </div>
+                            <button type="button" id="increment-button" data-input-counter-increment="durasi_rental" class="rounded text-body bg-neutral-secondary-medium box-border border border-default-medium border-gray-500 hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-s-base text-sm px-3 focus:outline-none h-10">
+                                <svg class="w-4 h-4 text-heading" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg>
+                            </button>
+                        </div>
+
+                    </div>
+                        <input type="hidden" name="total_biaya" id="total_biaya">
+                      <input type="hidden" name="tgl_selesai" id="tgl_selesai">
+                </div>
+
+
 
             <!-- Delivery Address -->
-            <div class="bg-white p-6 rounded-xl shadow">
+            <div class="bg-white p-6 rounded-xl shadow mt-10">
                 <h2 class="text-2xl font-bold mb-4 uppercase">Alamat Pengiriman</h2>
                 <div class="space-y-3">
                     <label class="flex items-start gap-2">
-                        <input type="radio" name="delivery" id="delivery-same" checked onclick="togglePickupAddress()">
-                        Kirim di alamat diatas
+                        <input type="radio" name="pengiriman" id="delivery-same" value="diantar" checked onclick="togglePickupAddress()">
+                        Kirim ke alamat diatas (Maks. 10 KM)
                     </label>
 
                     <label class="flex items-start gap-2">
-                        <input type="radio" name="delivery" id="delivery-pickup" onclick="togglePickupAddress()">
+                        <input type="radio" name="pengiriman" id="delivery-pickup" value="diambil" onclick="togglePickupAddress()">
                         Ambil sendiri
                     </label>
 
@@ -123,12 +134,12 @@
             </div>
 
             {{-- Payment Details --}}
-            <div class="bg-white p-6 rounded-xl shadow">
+            <div class="bg-white p-6 rounded-xl shadow mt-10">
                 <h2 class="text-2xl font-bold mb-4 uppercase">Pilihan Pembayaran</h2>
                 <div class="space-y-4">
 
                     <label class="flex items-center gap-2">
-                        <input type="radio" name="payment" id="payment-bank" checked onclick="togglePaymentDetails()">
+                        <input type="radio" name="pembayaran" id="payment-bank" value="transfer_bank" checked onclick="togglePaymentDetails()">
                         Transfer Bank (Jatim, BRI, BCA, Mandiri)
                     </label>
 
@@ -168,7 +179,7 @@
                     </div>
 
                     <label class="flex items-center gap-2">
-                        <input type="radio" name="payment" id="payment-qris-radio" onclick="togglePaymentDetails()">
+                        <input type="radio" name="pembayaran" id="payment-qris-radio" value="qris" onclick="togglePaymentDetails()">
                         Pembayaran melalui QRIS
                     </label>
 
@@ -182,29 +193,31 @@
             </div>
 
             {{-- Upload Bukti Pembayaran --}}
-            <div id="payment-proof-section" class="bg-white p-6 rounded-xl shadow">
+            <div id="payment-proof-section" class="bg-white p-6 rounded-xl shadow mt-10">
                 <h2 class="text-2xl font-bold mb-4 uppercase">Upload Bukti Pembayaran</h2>
                 <div class="space-y-4">
                     <p class="text-sm text-gray-600">Silakan unggah bukti transfer atau QRIS.</p>
                     <div>
                         <label class="font-medium block mb-1">Upload Bukti Pembayaran</label>
-                        <input type="file" id="bukti-pembyaran" accept="image/*" class="w-full border rounded-lg p-2 mt-1">
+                        <input type="file" id="bukti-pembayaran" name="bukti_pembayaran" accept="image/*" class="w-full border rounded-lg p-2 mt-1">
                     </div>
                 </div>
             </div>
 
             {{-- Upload Jaminan Peminjaman--}}
-            <div id="payment-proof-section" class="bg-white p-6 rounded-xl shadow">
-                <h2 class="text-2xl font-bold mb-4 uppercase">Upload Jaminan Peminjaman</h2>
+            <div id="payment-proof-section" class="bg-white p-6 rounded-xl shadow mt-10">
+                <h2 class="text-2xl font-bold mb-4 uppercase">Upload KTP/SIM</h2>
                 <div class="space-y-4">
-                    <p class="text-sm text-gray-600">Silakan unggah foto jaminan peminjaman.</p>
+                    <p class="text-sm text-gray-600">Silakan unggah foto KTP atau SIM (pilih salah satu).</p>
                     <div>
-                        <label class="font-medium block mb-1">Upload Jaminan Peminjaman</label>
-                        <input type="file" id="bukti-pembyaran" accept="image/*" class="w-full border rounded-lg p-2 mt-1">
+                        <label class="font-medium block mb-1">Upload KTP/SIM</label>
+                        <input type="file" id="foto_ktp_sim" name="foto_ktp_sim" accept="image/*" class="w-full border rounded-lg p-2 mt-1">
                     </div>
                 </div>
             </div>
-
+            <button type="submit" class="sr-only hidden">Submit Form</button>
+            </form>
+        </div>
         </div>
 
         <!-- RIGHT SIDE ORDER SUMMARY -->
@@ -214,50 +227,58 @@
 
                 <div class="flex gap-4 border-b pb-4">
                     <div class="w-16 h-16 bg-gray-200 rounded">
-                        <img src="{{ asset('images/PS5.jpg') }}" alt="">
+                        <img src="{{ asset('storage/jenis_peralatan/' . $jenis_peralatan->foto_peralatan) }}" alt="">
                     </div>
                     <div class="flex-1">
-                        <p class="font-semibold">PlayStation 5</p>
-                        <p class="text-sm text-gray-600">Durasi sewa : 1 hari</p>
+                        <p class="font-semibold">{{ $jenis_peralatan->merek }}</p>
+                        <p class="text-sm text-gray-600">Durasi sewa : <span id="durasi-display" class="text-gray-800">1</span> hari</p>
                     </div>
-                    <span class="font-semibold">Rp 60.000,00</span>
+                    <span class="font-semibold">Rp. <span id="harga_rental_per_hari">{{ $jenis_peralatan->harga_rental_per_hari }}</span> / hari</span>
                 </div>
 
                 <div class="text-sm space-y-1 pt-4">
-                    <div class="flex justify-between"><span>Jumlah</span><span>Rp 60.000,00</span></div>
-                    <div class="flex justify-between"><span>Biaya pengiriman</span><span>Rp 10.000,00</span></div>
+                    <div class="flex justify-between"><span>Jumlah</span><span class="harga_rental_display">1</span></div>
+                    <div class="flex justify-between"><span>Biaya pengiriman</span><span class="harga_kirim_display">Rp 10.000,00</span></div>
                     <div class="flex justify-between"><span>Diskon</span><span>-</span></div>
                 </div>
 
                 <div class="flex justify-between font-bold text-lg border-t pt-4">
                     <span>Total</span>
-                    <span>Rp 70.000,00</span>
+                    <span class="total_biaya">1</span>
                 </div>
 
-                <button class="w-full bg-[#ffa602] text-black hover:text-white py-3 rounded-lg text-center font-semibold">
+                <button class="w-full bg-[#ffa602] text-black hover:text-white py-3 rounded-lg text-center font-semibold" onclick="triggerFormSubmit()">
                     Checkout
                 </button>
             </div>
         </div>
     </div>
-
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script> --}}
     <script>
+
+        const totalBiayaEl = document.querySelector('.total_biaya');
+        const radioButtons = document.querySelectorAll('input[name="pengiriman"]');
+
+        let kirimHarga;
         function togglePickupAddress() {
             const pickupRadio = document.getElementById('delivery-pickup');
             const pickupAddressDetail = document.getElementById('pickup-address-detail');
+            const kirimDisplay = document.querySelector('.harga_kirim_display');
 
             // Cek apakah radio button "Ambil sendiri" terpilih
             if (pickupRadio.checked) {
                 // Jika terpilih, tampilkan alamat (hapus kelas hidden)
                 pickupAddressDetail.classList.remove('hidden');
+                kirimDisplay.textContent = 'Rp. 0'
+                kirimHarga = 0;
             } else {
                 // Jika tidak terpilih ("Kirim di alamat diatas" yang terpilih), sembunyikan alamat (tambahkan kelas hidden)
                 pickupAddressDetail.classList.add('hidden');
+                kirimDisplay.textContent = 'Rp. 10.000';
+                kirimHarga = 10000;
             }
         }
-
-        // Panggil saat halaman dimuat untuk memastikan status awal sesuai dengan radio button yang checked
-        document.addEventListener('DOMContentLoaded', togglePickupAddress);
+        togglePickupAddress();
 
         function togglePaymentDetails() {
             const bankRadio = document.getElementById('payment-bank');
@@ -277,6 +298,120 @@
 
         // Panggil saat halaman dimuat untuk memastikan status awal
         document.addEventListener('DOMContentLoaded', togglePaymentDetails);
+
+        const formatRupiah = (angka) => {
+            new Intl.NumberFormat('id-ID').format(angka);
+            const formattedNumber = new Intl.NumberFormat('id-ID', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(Number(angka));
+
+            return `${formattedNumber}`;
+        }
+
+        const decrementBtn = document.getElementById('decrement-button');
+        const incrementBtn = document.getElementById('increment-button');
+        const unitPeralatanSelect = document.getElementById('id_unit_peralatan');
+        const durasiDisplaySpan = document.getElementById('durasi-display');
+        const durasiInputEl = document.getElementById('durasi_rental');
+        const biayaPerHariVal = document.querySelector('#harga_rental_per_hari').textContent;
+        const biayaPerHariEl = document.querySelector('#harga_rental_per_hari');
+        const jumlahRentalEl = document.querySelector('.harga_rental_display');
+        const totalBiayaHidden = document.getElementById('total_biaya');
+
+        // console.log(biayaPerHariVal)
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const uang = formatRupiah(biayaPerHariEl.textContent)
+        //     biayaPerHariEl.innerHTML = uang;
+        // })
+
+        biayaPerHariEl.textContent = formatRupiah(biayaPerHariVal)
+
+        function calculateTotalHarga() {
+            const selectedUnitId = unitPeralatanSelect.value;
+            const durasiValue = parseInt(durasiInputEl.value);
+
+            const uang = formatRupiah(biayaPerHariVal)
+
+            let totalHarga = 0;
+            if (uang > 0 && !isNaN(durasiValue) && durasiValue > 0) {
+                totalHarga = biayaPerHariVal * durasiValue;
+            }
+
+            jumlahRentalEl.textContent = 'Rp. ' + formatRupiah(totalHarga);
+            durasiDisplaySpan.textContent = durasiValue;
+            totalBiayaEl.textContent = 'Rp. ' + formatRupiah(totalHarga + kirimHarga);
+            totalBiayaHidden.value = totalHarga + kirimHarga;
+        }
+
+        calculateTotalHarga()
+
+        decrementBtn.addEventListener('click', function() {
+            setTimeout(calculateTotalHarga, 0)
+        });
+        incrementBtn.addEventListener('click', function() {
+            setTimeout(calculateTotalHarga, 0)
+        });
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    setTimeout(calculateTotalHarga, 0)
+                }
+            });
+        });
+
+        // Tanggal Selesai
+        const tglMulaiEl = document.getElementById('tgl_mulai');
+        const tglSelesaiHiddenEl = document.getElementById('tgl_selesai');
+
+        function calculateEndDate() {
+            const tglMulaiValue = tglMulaiEl.value;
+            const durasiValue = parseInt(durasiInputEl.value);
+
+            if (!tglMulaiValue || isNaN(durasiValue)) {
+                tglSelesaiHiddenEl.value = '';
+                return;
+            }
+
+            const parts = tglMulaiValue.split('-');
+            if (parts.length !== 3) return;
+
+            const startDate = new Date(parts[0], parseInt(parts[1]) - 1, parts[2]);
+
+            startDate.setDate(startDate.getDate() + durasiValue);
+
+            const endDate = new Date(startDate);
+            const pad = (num) => (num < 10 ? '0' : '') + num;
+            const formattedMonth = pad(endDate.getMonth() + 1);
+            const formattedEndDate = `${endDate.getFullYear()}-${formattedMonth}-${pad(endDate.getDate())}`;
+
+            tglSelesaiHiddenEl.value = formattedEndDate;
+        }
+
+        tglMulaiEl.addEventListener('change', calculateEndDate);
+        decrementBtn.addEventListener('click', function() {
+            setTimeout(calculateEndDate, 0)
+        });
+        incrementBtn.addEventListener('click', function() {
+            setTimeout(calculateEndDate, 0)
+        });
+        durasiInputEl.addEventListener('change', calculateEndDate);
+        tglMulaiEl.addEventListener('changeDate', calculateEndDate);
+        calculateEndDate();
+
+        function triggerFormSubmit() {
+            const form = document.getElementById('checkout-form');
+
+            if (form) {
+                form.submit();
+            } else {
+                console.error("Formulir dengan ID 'checkout-form' tidak ditemukan.");
+            }
+        }
+
     </script>
 
 </x-page-template>
+</body>
+</html>

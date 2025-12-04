@@ -25,10 +25,6 @@ Route::get('/verifikasi-pelanggan', function () {
 
 Route::get('/katalog', [JenisPeralatanController::class, 'katalog'])->name('katalog');
 
-Route::get('/checkout', function () {
-    return view('layouts.checkout');
-})->name('checkout');
-
 Route::get('/search', [SearchController::class, 'index']);
 
 // Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout.index');
@@ -60,7 +56,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/pemesanan/pengembalian/{pemesanan}', [PemesananController::class, 'konfirmasiAksi'])
         ->name('pemesanan.pengembalian');
 
-    Route::get('/histori-rental', [PemesananController::class, 'historiRental']);
+    Route::get('/histori-rental', [PemesananController::class, 'historiRental'])
+        ->name('histori.index');
+
+    Route::get('/checkout/{jenis_peralatan}', [PemesananController::class, 'showCheckoutForm'])
+        ->name('pemesanan.checkout');
 });
 
 require __DIR__.'/auth.php';
