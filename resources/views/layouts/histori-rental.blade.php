@@ -60,7 +60,27 @@
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Riwayat Peminjaman Anda</h2>
         </div>
     </div>
+    @if (session()->has('success'))
+        <div id="alert-border-1" class="flex items-center p-4 mb-4 text-sm text-green-400 border-t-4 border-green-500 bg-gray-700 rounded-lg" role="alert">
 
+            {{-- SVG Icon untuk tanda centang / sukses --}}
+            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h4a1 1 0 0 1 0 2Zm1.713-3.693a1 1 0 0 1-1.42 1.42l-3-3a1 1 0 0 1 1.42-1.42l2.364 2.364Z"/>
+            </svg>
+
+            <div class="ms-3 text-sm font-medium">
+                <span class="font-bold">Berhasil!</span> {{ session()->get('success') }}
+            </div>
+
+            {{-- Tombol Tutup (Silang) --}}
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-gray-700 text-green-400 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-gray-600 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#alert-border-1" aria-label="Close">
+                <span class="sr-only">Dismiss</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>
+        </div>
+    @endif
     <div class="container mx-auto px-4 mt-8">
         @foreach ($selectHistoriUser as $histori)
             <div class="bg-white p-4 md:p-6 shadow-md rounded-lg mb-6 border border-gray-100 transition duration-300 hover:shadow-lg">
