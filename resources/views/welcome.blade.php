@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <x-style-in-head />
-
-<body class="bg-white font-outfit">
+<x-page-template>
 
     {{-- NAVBAR --}}
     <nav class="w-full py-4 bg-transparent">
@@ -32,7 +28,7 @@
 
                 @else
 
-                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900 text-md">Log in &raquo;</a>
+                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-[#e29402] text-md">Log in &raquo;</a>
 
                 @endauth
             </div>
@@ -292,8 +288,5 @@
     </footer>
 
 
-    @vite('resources/js/app.js')
-    <script src="/node_modules/flowbite/dist/flowbite.min.js"></script>
-</body>
 
-</html>
+</x-page-template>
