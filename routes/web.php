@@ -31,10 +31,6 @@ Route::get('/checkout', function () {
 
 Route::get('/search', [SearchController::class, 'index']);
 
-Route::get('/payment', function () {
-    return view('layouts.payment');
-})->name('payment');
-
 // Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout.index');
 // Route::post('/checkout', [checkoutController::class, 'process'])->name('checkout.process');
 

@@ -45,7 +45,7 @@
                             @foreach ($users as $user)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $user->name }}
+                                    {{ $user->username ?? '- Belum diatur' }}
                                 </td>
                                 <td class="px-6 py-4">{{ $user->nama_depan }}</td>
                                 <td class="px-6 py-4">{{ $user->nama_belakang }}</td>
@@ -64,7 +64,7 @@
                                     <form action="{{ route('akun_user.destroy', $user->id) }}" id="delete-form-{{ $user->id }}" method="POST" onsubmit="event.preventDefault(); confirmDelete('delete-form-{{ $user->id }}');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"  class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</button>
+                                        <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
@@ -77,75 +77,75 @@
         </div>
     </div>
 
-
 </x-app-layout>
-@include('admin.akun_user.create-modal')
-<script>
-    // Datatables Init
-    if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
-        const dataTable = new simpleDatatables.DataTable("#search-table", {
-            searchable: true,
-            sortable: false
-        });
-    }
 
-    function loadUserData(user) {
-        // 1. Ambil Form dan Set Action URL
-        const form = document.getElementById('edit-user-form');
-        // Route update memerlukan ID user: /akun_user/{id}
-        form.action = `/akun_user/${user.id}`;
+    @include('admin.akun_user.create-modal')
+        <script>
+            // Datatables Init
+            if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+                const dataTable = new simpleDatatables.DataTable("#search-table", {
+                    searchable: true,
+                    sortable: false
+                });
+            }
 
-        document.getElementById('edit-name').value = user.name;
-        document.getElementById('edit-nama_depan').value = user.nama_depan;
-        document.getElementById('edit-nama_belakang').value = user.nama_belakang;
-        document.getElementById('edit-email').value = user.email;
-        document.getElementById('edit-tanggal_lahir').value = user.tanggal_lahir;
+            function loadUserData(user) {
+                // 1. Ambil Form dan Set Action URL
+                const form = document.getElementById('edit-user-form');
+                // Route update memerlukan ID user: /akun_user/{id}
+                form.action = `/akun_user/${user.id}`;
 
-        document.getElementById('edit-roles').value = user.roles;
-    }
+                document.getElementById('edit-username').value = user.username;
+                document.getElementById('edit-nama_depan').value = user.nama_depan;
+                document.getElementById('edit-nama_belakang').value = user.nama_belakang;
+                document.getElementById('edit-email').value = user.email;
+                document.getElementById('edit-date_of_birth').value = user.date_of_birth;
 
-    function confirmDelete(formId) {
-    // Fungsi ini dipanggil dari event onsubmit pada tag <form>
+                document.getElementById('edit-roles').value = user.roles;
+            }
 
-    // Gunakan SweetAlert2 untuk menampilkan dialog konfirmasi
-    Swal.fire({
-        title: "Apakah Anda Yakin?",
-        text: "Anda akan menghapus data ini secara permanen dan tidak dapat dikembalikan!",
-        icon: "warning",
-        showCancelButton: true, // Menampilkan tombol Batal
+            function confirmDelete(formId) {
+            // Fungsi ini dipanggil dari event onsubmit pada tag <form>
 
-        // Warna tombol Hapus (Warna merah)
-        confirmButtonColor: "#dc3545", // Tailwind red-600/Bootstrap danger color
-
-        // Warna tombol Batal (Warna abu-abu/biru)
-        cancelButtonColor: "#6c757d",
-
-        confirmButtonText: "Ya, Hapus!",
-        cancelButtonText: "Batal",
-
-        // Tambahkan atribut custom (opsional)
-        reverseButtons: true // Membalik urutan tombol (Batal di kiri, Hapus di kanan)
-    }).then((result) => {
-        // Logika dijalankan setelah user merespons dialog
-
-        if (result.isConfirmed) {
-            // Jika user menekan 'Ya, Hapus'
-
-            // 1. Dapatkan elemen form yang dituju berdasarkan ID
-            const form = document.getElementById(formId);
-
-            // 2. Submit form DELETE secara manual
-            form.submit();
-
-            // Opsional: Tampilkan loading SweetAlert
+            // Gunakan SweetAlert2 untuk menampilkan dialog konfirmasi
             Swal.fire({
-                title: 'Menghapus...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
+                title: "Apakah Anda Yakin?",
+                text: "Anda akan menghapus data ini secara permanen dan tidak dapat dikembalikan!",
+                icon: "warning",
+                showCancelButton: true, // Menampilkan tombol Batal
+
+                // Warna tombol Hapus (Warna merah)
+                confirmButtonColor: "#dc3545", // Tailwind red-600/Bootstrap danger color
+
+                // Warna tombol Batal (Warna abu-abu/biru)
+                cancelButtonColor: "#6c757d",
+
+                confirmButtonText: "Ya, Hapus!",
+                cancelButtonText: "Batal",
+
+                // Tambahkan atribut custom (opsional)
+                reverseButtons: true // Membalik urutan tombol (Batal di kiri, Hapus di kanan)
+            }).then((result) => {
+                // Logika dijalankan setelah user merespons dialog
+
+                if (result.isConfirmed) {
+                    // Jika user menekan 'Ya, Hapus'
+
+                    // 1. Dapatkan elemen form yang dituju berdasarkan ID
+                    const form = document.getElementById(formId);
+
+                    // 2. Submit form DELETE secara manual
+                    form.submit();
+
+                    // Opsional: Tampilkan loading SweetAlert
+                    Swal.fire({
+                        title: 'Menghapus...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
                 }
             });
         }
-    });
-}
-</script>
+        </script>
