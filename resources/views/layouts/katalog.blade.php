@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Katalog Rental Console</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-50 text-gray-900">
+<x-page-template>
 
     {{-- NAVBAR --}}
     <nav class="w-full py-4 bg-transparent">
+
         <div class="container mx-auto px-6 flex justify-between items-center">
             <div href="/" class="">
                 <x-main-logo/>
@@ -53,6 +45,8 @@
                 </div>
             </div>
         </div>
+
+
     </nav>
   <section class="bg-yellow-100 pt-10 pb-20 relative overflow-hidden">
     <div class="max-w-5xl mx-auto text-center px-6">
@@ -173,4 +167,4 @@
         document.querySelector('[data-filter="semua"]').click();
     });
 </script>
-</html>
+</x-page-template>
