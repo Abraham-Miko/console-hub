@@ -24,5 +24,8 @@
 </head>
 <body class="font-outfit bg-white text-black antialiased">
     {{ $slot }}
+
+    @vite('resources/js/app.js')
+    <script src="/node_modules/flowbite/dist/flowbite.min.js"></script>
 </body>
 </html>
