@@ -15,15 +15,18 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_unit_peralatan');
             $table->foreignId('user_id')->constrained('users');
-            $table->string('nama_penyewa');
+            $table->string('nama_penyewa', 255);
             $table->string('nik_penyewa', 16);
-            $table->string('telepon_penyewa', 15);
+            $table->string('telepon_penyewa', 13);
             $table->string('alamat_penyewa', 100);
             $table->enum('jaminan_penyewa', ['ktp', 'stnk', 'bpkb', 'sim']);
             $table->string('foto_ktp_sim');
             $table->date('tgl_mulai');
             $table->integer('durasi_rental');
             $table->date('tgl_selesai');
+            $table->enum('pengiriman', ['ambil_sendiri', 'diantar'])->default('ambil_sendiri')->after('tgl_selesai');
+            $table->enum('pembayaran', ['transfer', 'cash'])->default('transfer')->after('pengiriman');
+            $table->string('bukti_pembayaran')->nullable()->after('pembayaran');
             $table->decimal('total_biaya', 10, 2)->default(0);
             $table->uuid('verification_token')->unique();
             $table->enum('status_pemesanan', ['dipesan', 'dirental', 'selesai', 'dibatalkan'])

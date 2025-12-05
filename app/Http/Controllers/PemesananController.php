@@ -59,7 +59,7 @@ class PemesananController extends Controller
         $validatedData = $request->validate([
             'id_unit_peralatan' => ['required'],
             'nama_penyewa' => ['required', 'string', 'max:255'],
-            'nik_penyewa' => ['required', 'max:18'],
+            'nik_penyewa' => ['required', 'max:16'],
             'telepon_penyewa' => ['required', 'max:13'],
             'alamat_penyewa' => ['required'],
             'jaminan_penyewa' => ['required'],
