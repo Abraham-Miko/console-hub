@@ -8,7 +8,7 @@
 
             <div class="flex items-center justify-between border-b border-gray-700 pb-4 md:pb-5">
                 <h3 class="text-xl font-medium text-white">
-                    Edit Akun: {{ $user->name }}
+                    Edit Akun: {{ $user->username }}
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-700 hover:text-white rounded-lg text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="edit-modal-{{ $user->id }}">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
@@ -22,11 +22,11 @@
                 <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
 
                     <div class="col-span-2">
-                        <label for="name-{{ $user->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Username</label>
-                        <input type="text" name="name" id="name-{{ $user->id }}"
+                        <label for="username-{{ $user->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Username</label>
+                        <input type="text" name="username" id="username-{{ $user->id }}"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
-                            placeholder="Contoh: FrlFrz" required="" value="{{ old('name', $user->name) }}">
-                            @error('name')
+                            placeholder="Contoh: FrlFrz" required="" value="{{ old('username', $user->username) }}">
+                            @error('username')
                                 <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                             @enderror
                     </div>
@@ -55,7 +55,7 @@
                         <label for="email-{{ $user->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Email</label>
                         <input type="email" name="email" id="email-{{ $user->id }}"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
-                            placeholder="Contoh: atminhytam@gmail.com" required="" value="{{ old('nama_belakang', $user->email) }}" oninput="this.value = this.value.toLowerCase()">
+                            placeholder="Contoh: atminhytam@gmail.com" required="" value="{{ old('email', $user->email) }}" oninput="this.value = this.value.toLowerCase()">
                             @error('email')
                                 <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                             @enderror
