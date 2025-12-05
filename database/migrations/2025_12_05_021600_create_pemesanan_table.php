@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('id_unit_peralatan');
             $table->foreignId('user_id')->constrained('users');
             $table->string('nama_penyewa');
-            $table->string('nik_penyewa', 18);
+            $table->string('nik_penyewa', 16);
             $table->string('telepon_penyewa', 15);
             $table->string('alamat_penyewa', 100);
             $table->enum('jaminan_penyewa', ['ktp', 'stnk', 'bpkb', 'sim']);
