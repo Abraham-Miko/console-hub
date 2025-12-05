@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Histori Rental</title>
-</head>
-<body>
-
+<x-page-template>
     {{-- NAVBAR --}}
     <nav class="w-full py-4 bg-transparent">
         <div class="container mx-auto px-6 flex justify-between items-center">
@@ -255,5 +245,4 @@
             )
         }
     </script>
-</body>
-</html>
+</x-page-template>

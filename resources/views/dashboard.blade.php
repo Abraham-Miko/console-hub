@@ -9,7 +9,7 @@
                         <div class="bg-gray-800 dark:bg-[#1f2937] shadow-xl rounded-lg overflow-hidden p-4 border border-gray-700 hover:shadow-2xl transition duration-200 h-36 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <p class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-1">TOTAL CONSOLE</p>
+                                    <p class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-1">TOTAL ALAT GAMING</p>
                                     <p class="text-3xl font-extrabold text-white">{{ $stats['totalUnitPeralatan'] ?? 'N/A' }}</p>
                                 </div>
                                 <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +22,7 @@
                         <div class="bg-gray-800 dark:bg-[#1f2937] shadow-xl rounded-lg overflow-hidden p-4 border border-gray-700 hover:shadow-2xl transition duration-200 h-36 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <p class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-1">CONSOLE TERSEDIA</p>
+                                    <p class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-1">ALAT GAMING TERSEDIA</p>
                                     <p class="text-3xl font-extrabold text-white">{{ $stats['totalPeralatanTersedia'] ?? 'N/A' }}</p>
                                 </div>
                                 <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
                         <div class="bg-gray-800 dark:bg-[#1f2937] shadow-xl rounded-lg overflow-hidden p-4 border border-gray-700 hover:shadow-2xl transition duration-200 h-36 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <p class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2">CONSOLE DALAM RENTAL</p>
+                                    <p class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2">ALAT GAMING DALAM RENTAL</p>
                                     <div class="text-3xl font-extrabold text-white mb-2">{{ $stats['totalPeralatanDirental'] ?? 'N/A' }}</div>
 
                                     <div class="w-full bg-gray-700 rounded-full h-2">
