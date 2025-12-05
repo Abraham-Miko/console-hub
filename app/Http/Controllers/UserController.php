@@ -46,7 +46,7 @@ class UserController extends Controller
 
         $validatedData = $request->validate(
             $rules = [
-            'username' => ['nullable', 'string', 'max:255', Rule::unique('users', 'username')->ignore($akun_user->id)],
+            'name' => ['nullable', 'string', 'max:255', Rule::unique('users', 'name')->ignore($akun_user->id)],
             'nama_depan' => ['string', 'max:255'],
             'nama_belakang' => ['string', 'max:255', 'nullable'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users', 'email')->ignore($akun_user->id)],

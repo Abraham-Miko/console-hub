@@ -59,7 +59,10 @@ class JenisPeralatanController extends Controller
         // dd($data);
         if($request->hasFile('foto_peralatan')) {
             if($jenis_peralatan->foto_peralatan) {
-                Storage::delete('public/jenis_peralatan/' . $jenis_peralatan->foto_peralatan);
+                $pathFotoLengkap = 'jenis_peralatan' . '/' . $jenis_peralatan->foto_peralatan;
+                if(Storage::disk('public')->exists($pathFotoLengkap)) {
+                    Storage::disk('public')->delete($pathFotoLengkap);
+                }
             }
             $file = $request->file('foto_peralatan');
             $extension = $file->getClientOriginalExtension();
@@ -90,7 +93,10 @@ class JenisPeralatanController extends Controller
         }
 
         if ($jenis_peralatan->foto_peralatan) {
-            Storage::delete('public/jenis_peralatan/' . $jenis_peralatan->foto_peralatan);
+            $pathFotoLengkap = 'jenis_peralatan' . '/' . $jenis_peralatan->foto_peralatan;
+            if(Storage::disk('public')->exists($pathFotoLengkap)) {
+                Storage::disk('public')->delete($pathFotoLengkap);
+            }
         }
 
         $jenis_peralatan->delete();

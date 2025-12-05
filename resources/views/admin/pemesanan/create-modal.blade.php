@@ -146,7 +146,7 @@
                                     </button>
                                 </div>
                             </div>
-                                <input type="text" id="tgl_selesai_hidden" name="tgl_selesai">
+                                <input type="hidden" id="tgl_selesai_hidden" name="tgl_selesai">
                             </div>
 
                     </div>
