@@ -245,7 +245,7 @@
                 <h2 class="text-2xl font-bold mb-2 uppercase">Order summary</h2>
 
                 <div class="flex gap-4 border-b pb-4">
-                    <div class="w-16 h-16 bg-gray-200 rounded">
+                    <div class="w-16 bg-gray-200 rounded">
                         <img src="{{ asset('storage/jenis_peralatan/' . $jenis_peralatan->foto_peralatan) }}" alt="">
                     </div>
                     <div class="flex-1">
@@ -266,7 +266,7 @@
                     <span class="total_biaya">1</span>
                 </div>
 
-                <button class="w-full bg-[#ffa602] text-black hover:text-white py-3 rounded-lg text-center font-semibold" onclick="triggerFormSubmit()">
+                <button class="w-full bg-[#ffa602] text-black hover:text-white py-3 rounded-lg text-center font-semibold transition duration-300" onclick="triggerFormSubmit()">
                     Checkout
                 </button>
             </div>
@@ -293,7 +293,7 @@
             } else {
                 // Jika tidak terpilih ("Kirim di alamat diatas" yang terpilih), sembunyikan alamat (tambahkan kelas hidden)
                 pickupAddressDetail.classList.add('hidden');
-                kirimDisplay.textContent = 'Rp. 10.000';
+                kirimDisplay.textContent = 'Rp. 10.000,00';
                 kirimHarga = 10000;
             }
         }
@@ -345,7 +345,7 @@
         //     biayaPerHariEl.innerHTML = uang;
         // })
 
-        biayaPerHariEl.textContent = formatRupiah(biayaPerHariVal)
+        biayaPerHariEl.textContent = formatRupiah(biayaPerHariVal) + ',00';
 
         function calculateTotalHarga() {
             const selectedUnitId = unitPeralatanSelect.value;
@@ -358,9 +358,9 @@
                 totalHarga = biayaPerHariVal * durasiValue;
             }
 
-            jumlahRentalEl.textContent = 'Rp. ' + formatRupiah(totalHarga);
+            jumlahRentalEl.textContent = 'Rp. ' + formatRupiah(totalHarga) + ',00';
             durasiDisplaySpan.textContent = durasiValue;
-            totalBiayaEl.textContent = 'Rp. ' + formatRupiah(totalHarga + kirimHarga);
+            totalBiayaEl.textContent = 'Rp. ' + formatRupiah(totalHarga + kirimHarga) + ',00';
             totalBiayaHidden.value = totalHarga + kirimHarga;
         }
 

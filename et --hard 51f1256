@@ -1,0 +1,45 @@
+[33m51f1256[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend-IONICO[m[33m, [m[1;31morigin/backend-IONICO[m[33m)[m HEAD@{0}: checkout: moving from 51f12562466cbbcfa2d23c1fb492305921c8b945 to backend-IONICO
+[33m51f1256[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend-IONICO[m[33m, [m[1;31morigin/backend-IONICO[m[33m)[m HEAD@{1}: checkout: moving from backend-IONICO to 51f12562466cbbcfa2d23c1fb492305921c8b945
+[33m51f1256[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend-IONICO[m[33m, [m[1;31morigin/backend-IONICO[m[33m)[m HEAD@{2}: checkout: moving from backend-IONICO to backend-IONICO
+[33m51f1256[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend-IONICO[m[33m, [m[1;31morigin/backend-IONICO[m[33m)[m HEAD@{3}: checkout: moving from user_interface_backend to backend-IONICO
+[33m0dbba97[m[33m ([m[1;31morigin/user_interface_backend[m[33m, [m[1;32muser_interface_backend[m[33m)[m HEAD@{4}: checkout: moving from frontend-IONICO to user_interface_backend
+[33mc01c17c[m[33m ([m[1;31morigin/frontend-IONICO[m[33m, [m[1;32mfrontend-IONICO[m[33m)[m HEAD@{5}: checkout: moving from backend-IONICO to frontend-IONICO
+[33m51f1256[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend-IONICO[m[33m, [m[1;31morigin/backend-IONICO[m[33m)[m HEAD@{6}: checkout: moving from frontend-IONICO to backend-IONICO
+[33mc01c17c[m[33m ([m[1;31morigin/frontend-IONICO[m[33m, [m[1;32mfrontend-IONICO[m[33m)[m HEAD@{7}: checkout: moving from backend-IONICO to frontend-IONICO
+[33m51f1256[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend-IONICO[m[33m, [m[1;31morigin/backend-IONICO[m[33m)[m HEAD@{8}: reset: moving to HEAD
+[33m51f1256[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend-IONICO[m[33m, [m[1;31morigin/backend-IONICO[m[33m)[m HEAD@{9}: commit: Modifikasi pada bagian restriction untuk halaman checkout
+[33mf139a27[m HEAD@{10}: commit (merge): Merge remote-tracking branch 'origin/master' into backend-IONICO
+[33md4ce715[m HEAD@{11}: checkout: moving from master to backend-IONICO
+[33mc922975[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{12}: checkout: moving from backend-IONICO to master
+[33md4ce715[m HEAD@{13}: checkout: moving from backend-IONICO to backend-IONICO
+[33md4ce715[m HEAD@{14}: checkout: moving from master to backend-IONICO
+[33mc922975[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{15}: checkout: moving from backend-IONICO to master
+[33md4ce715[m HEAD@{16}: checkout: moving from master to backend-IONICO
+[33mc922975[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{17}: checkout: moving from backend-IONICO to master
+[33md4ce715[m HEAD@{18}: commit: perubahan struktur pada tabel users
+[33m127d2bd[m HEAD@{19}: commit: Memperbaiki logika pada menu users di bagian admin untuk dapat menampilkan roles dan mengubahnya sesuai dengan yang diinginkan. Tetapi belum menyelesaikan untuk dapat menampilkan username.
+[33mc01c17c[m[33m ([m[1;31morigin/frontend-IONICO[m[33m, [m[1;32mfrontend-IONICO[m[33m)[m HEAD@{20}: checkout: moving from frontend-IONICO to backend-IONICO
+[33mc01c17c[m[33m ([m[1;31morigin/frontend-IONICO[m[33m, [m[1;32mfrontend-IONICO[m[33m)[m HEAD@{21}: commit: kurang tombol checkout
+[33mda77110[m HEAD@{22}: commit: Penambahan fitur pada checkout dan perubahan isi dari regitrasi.
+[33mc922975[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{23}: checkout: moving from master to frontend-IONICO
+[33mc922975[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{24}: pull --tags origin master: Fast-forward
+[33m66c65be[m HEAD@{25}: checkout: moving from Design to master
+[33m6077875[m[33m ([m[1;31morigin/Design[m[33m, [m[1;32mDesign[m[33m)[m HEAD@{26}: checkout: moving from master to Design
+[33m66c65be[m HEAD@{27}: pull --tags origin master: Fast-forward
+[33m9c4186c[m HEAD@{28}: checkout: moving from Design to master
+[33m6077875[m[33m ([m[1;31morigin/Design[m[33m, [m[1;32mDesign[m[33m)[m HEAD@{29}: commit: Perubahan design sedikit di home, login, register
+[33m9c4186c[m HEAD@{30}: checkout: moving from master to Design
+[33m9c4186c[m HEAD@{31}: pull --tags origin master: Fast-forward
+[33m8b71dc1[m HEAD@{32}: pull --tags origin master: Fast-forward
+[33mafb65da[m HEAD@{33}: checkout: moving from Design-homepage-+-login-+-register to master
+[33m37eecfd[m[33m ([m[1;31morigin/Design-homepage-+-login-+-register[m[33m, [m[1;32mDesign-homepage-+-login-+-register[m[33m)[m HEAD@{34}: commit: Modifikasi bagian head supaya menjadi blade templating engine.
+[33m5708e30[m HEAD@{35}: commit: #
+[33m9517958[m HEAD@{36}: commit: Penambahan halaman checkout dan sebagian dari payment
+[33m05a00c5[m HEAD@{37}: commit: pergantian migrasi
+[33mafb65da[m HEAD@{38}: checkout: moving from master to Design-homepage-+-login-+-register
+[33mafb65da[m HEAD@{39}: commit: Design homepage + login + register
+[33m4b1b4cd[m HEAD@{40}: commit: Design homepage, login page, register page. Serta tambah logo dari console hub
+[33m1f2ee59[m HEAD@{41}: checkout: moving from main to master
+[33me36ef3a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{42}: checkout: moving from master to main
+[33m1f2ee59[m HEAD@{43}: checkout: moving from master to master
+[33m1f2ee59[m HEAD@{44}: commit (initial): Commit awal
