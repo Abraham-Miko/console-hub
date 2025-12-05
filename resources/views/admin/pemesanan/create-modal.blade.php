@@ -62,6 +62,26 @@
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
+                        <label for="pengiriman" class="block mb-2.5 text-sm font-medium text-gray-300">Pengiriman</label>
+                        <select id="pengiriman" name="pengiriman"
+                            class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
+                            <option disabled selected="">- Pilih Pengiriman -</option>
+                            <option value="diantar" selected>Diantar</option>
+                            <option value="diambil">Diambil</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="pembayaran" class="block mb-2.5 text-sm font-medium text-gray-300">Pembayaran</label>
+                        <select id="pembayaran" name="pembayaran"
+                            class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
+                            <option disabled selected="">- Pilih Pembayaran -</option>
+                            <option value="transfer_bank">Transfer Bank</option>
+                            <option value="qris">QRIS</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1">
                         <label for="telepon_penyewa" class="block mb-2.5 text-sm font-medium text-gray-300">No. Telepon</label>
                         <input type="text" name="telepon_penyewa" id="telepon_penyewa"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
@@ -73,9 +93,9 @@
                         <select id="jaminan_penyewa" name="jaminan_penyewa"
                             class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
                             <option disabled selected="">- Pilih Jaminan -</option>
-                            <option value="ktp">ktp</option>
+                            <option value="ktp">KTP</option>
+                            <option value="ktm">KTM</option>
                             <option value="stnk">STNK</option>
-                            <option value="bpkb">BPKB</option>
                             <option value="sim">SIM</option>
                         </select>
                     </div>
@@ -101,19 +121,34 @@
                                 @enderror
                             </div>
                             <div class="col-span-2 sm:col-span-1">
-                                <label for="durasi_rental" class="block mb-2.5 text-sm font-medium text-gray-300">Durasi Rental</label>
-                                <select id="durasi_rental" name="durasi_rental"
-                                    class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
-                                    <option disabled selected="">- Pilih Durasi -</option>
-                                    <option value="3">3 hari</option>
-                                    <option value="5">5 hari</option>
-                                    <option value="7">7 hari</option>
-                                    <option value="14">14 hari</option>
-                                </select>
+                                <label for="durasi_rental" class="block mb-2.5 text-sm font-medium text-gray-300">Durasi Rental (hari)</label>
+                                <div class="relative flex items-center max-w-[11rem] mt-1">
+                                    <button type="button" id="decrement-button" data-input-counter-decrement="durasi_rental"
+                                            class="bg-gray-700 border border-gray-600 text-gray-300
+                                                hover:bg-gray-600 hover:text-white focus:ring-4 focus:ring-indigo-500
+                                                font-medium text-sm px-3 focus:outline-none h-10 rounded-s-lg border-r-0">
+                                        <svg class="w-4 h-4 text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/></svg>
+                                    </button>
+
+                                    <div class="relative w-full">
+                                        <input type="text" id="durasi_rental" name="durasi_rental"
+                                            data-input-counter data-input-counter-min="1" data-input-counter-max="7"
+                                            class="border-x-0 h-10 text-white text-center w-full bg-gray-700 border border-gray-600
+                                                    py-2.5 px-0 text-sm placeholder:text-gray-400 block"
+                                            placeholder="1" value="1" required />
+                                    </div>
+
+                                    <button type="button" id="increment-button" data-input-counter-increment="durasi_rental"
+                                            class="bg-gray-700 border border-gray-600 text-gray-300
+                                                hover:bg-gray-600 hover:text-white focus:ring-4 focus:ring-indigo-500
+                                                font-medium leading-5 rounded-e-lg text-sm px-3 focus:outline-none h-10 border-l-0">
+                                        <svg class="w-4 h-4 text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg>
+                                    </button>
+                                </div>
                             </div>
-                                <input type="hidden" id="tgl_selesai_hidden" name="tgl_selesai">
+                                <input type="text" id="tgl_selesai_hidden" name="tgl_selesai">
                             </div>
-                        </div>
+
                     </div>
 
                     <div class="col-span-2 sm:col-span-1 hidden">
@@ -134,7 +169,7 @@
                         <input type="hidden" name="total_biaya" id="total_biaya">
                     </div>
 
-                    <div class="col-span-2 sm:col-span-1 mb-3">
+                    <div class="col-span-2 sm:col-span-1">
                         <label for="status_pemesanan" class="block mb-2.5 text-sm font-medium text-gray-300">Status Pemesanan</label>
                         <select id="status_pemesanan" name="status_pemesanan"
                             class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
@@ -143,6 +178,18 @@
                             <option value="selesai">Selesai</option>
                             <option value="dibatalkan">Dibatalkan</option>
                         </select>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label for="bukti_pembayaran" class="block mb-2.5 text-sm font-medium text-gray-300">Foto Bukti Pembayaran</label>
+                        <input class="block w-full text-sm text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 file:bg-indigo-600 file:text-white" aria-describedby="file_input_help" id="file_input_pembayaran" type="file" name="bukti_pembayaran">
+                        <p class="mt-1 text-sm text-gray-400" id="file_input_help">PNG, JPG or JPEG (MAX. 2MB).</p>
+
+                        {{-- <div id="dropzone-area" class="mt-2 flex flex-col items-center justify-center w-full h-36 bg-gray-700 border-2 border-dashed border-gray-600 rounded-lg">
+                            <img id="image-preview" src="#" alt="Preview KTP/SIM" class="hidden w-full h-full object-cover rounded-lg p-2" />
+                            <div id="default-content" class="flex flex-col items-center justify-center text-white pt-5 pb-6">
+                                </div>
+                        </div> --}}
                     </div>
 
                     <div class="col-span-2">

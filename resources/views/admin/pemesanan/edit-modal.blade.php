@@ -72,6 +72,26 @@
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
+                        <label for="pengiriman-{{ $pemesanan->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Pengiriman</label>
+                        <select id="pengiriman-{{ $pemesanan->id }}" name="pengiriman"
+                            class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
+                            <option disabled>- Pilih Pengiriman -</option>
+                            <option value="diantar" @selected(old('pengiriman', $pemesanan->pengiriman) == "diantar")>Diantar</option>
+                            <option value="diambil" @selected(old('pengiriman', $pemesanan->pengiriman) == "diambil")>Diambil</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="pembayaran-{{ $pemesanan->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Pembayaran</label>
+                        <select id="pembayaran-{{ $pemesanan->id }}" name="pembayaran"
+                            class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
+                            <option disabled>- Pilih Pembayaran -</option>
+                            <option value="transfer_bank" @selected(old('pembayaran', $pemesanan->pembayaran) == "transfer_bank")>Transfer Bank</option>
+                            <option value="qris"  @selected(old('pembayaran', $pemesanan->pembayaran) == "qris")>QRIS</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1">
                         <label for="jaminan_penyewa-{{ $pemesanan->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Jaminan Penyewa</label>
                         <select id="jaminan_penyewa-{{ $pemesanan->id }}" name="jaminan_penyewa"
                             class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
@@ -104,19 +124,33 @@
                                 @enderror
                             </div>
                             <div class="col-span-2 sm:col-span-1">
-                                <label for="durasi_rental-{{ $pemesanan->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Durasi Rental</label>
-                                <select id="durasi_rental-{{ $pemesanan->id }}" name="durasi_rental"
-                                    class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
-                                    <option disabled selected="">- Pilih Durasi -</option>
-                                    <option value="3" @selected(old('durasi_rental', $pemesanan->durasi_rental) == 3)>3 hari</option>
-                                    <option value="5" @selected(old('durasi_rental', $pemesanan->durasi_rental) == 5)>5 hari</option>
-                                    <option value="7" @selected(old('durasi_rental', $pemesanan->durasi_rental) == 7)>7 hari</option>
-                                    <option value="14" @selected(old('durasi_rental', $pemesanan->durasi_rental) == 14)>14 hari</option>
-                                </select>
+                                <label for="durasi_rental-{{ $pemesanan->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Durasi Rental (hari)</label>
+                                <div class="relative flex items-center max-w-[11rem] mt-1">
+                                    <button type="button" id="decrement-button-{{ $pemesanan->id }}" data-input-counter-decrement="durasi_rental-{{ $pemesanan->id }}"
+                                            class="bg-gray-700 border border-gray-600 text-gray-300
+                                                hover:bg-gray-600 hover:text-white focus:ring-4 focus:ring-indigo-500
+                                                font-medium text-sm px-3 focus:outline-none h-10 rounded-s-lg border-r-0">
+                                        <svg class="w-4 h-4 text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/></svg>
+                                    </button>
+
+                                    <div class="relative w-full">
+                                        <input type="text" id="durasi_rental-{{ $pemesanan->id }}" name="durasi_rental"
+                                            data-input-counter data-input-counter-min="1" data-input-counter-max="7"
+                                            class="border-x-0 h-10 text-white text-center w-full bg-gray-700 border border-gray-600
+                                                    py-2.5 px-0 text-sm placeholder:text-gray-400 block"
+                                            placeholder="1" value="{{ old('durasi_rental', $pemesanan->durasi_rental) }}" required />
+                                    </div>
+
+                                    <button type="button" id="increment-button-{{ $pemesanan->id }}" data-input-counter-increment="durasi_rental-{{ $pemesanan->id }}"
+                                            class="bg-gray-700 border border-gray-600 text-gray-300
+                                                hover:bg-gray-600 hover:text-white focus:ring-4 focus:ring-indigo-500
+                                                font-medium leading-5 rounded-e-lg text-sm px-3 focus:outline-none h-10 border-l-0">
+                                        <svg class="w-4 h-4 text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg>
+                                    </button>
+                                </div>
                             </div>
                                 <input type="hidden" id="tgl_selesai_hidden-{{ $pemesanan->id }}" name="tgl_selesai" value="{{ old('tgl_selesai', $pemesanan->tgl_selesai) }}">
                             </div>
-                        </div>
                     </div>
 
                     <div class="col-span-2 sm:col-span-1 hidden">
@@ -137,7 +171,7 @@
                         <input type="hidden" name="total_biaya" id="total_biaya-{{ $pemesanan->id }}" value="{{ old('total_biaya', $pemesanan->total_biaya) }}">
                     </div>
 
-                    <div class="col-span-2 sm:col-span-1 mb-3">
+                    <div class="col-span-2 sm:col-span-1">
                         <label for="status_pemesanan-{{ $pemesanan->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Status Pemesanan</label>
                         <select id="status_pemesanan-{{ $pemesanan->id }}" name="status_pemesanan"
                             class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400">
@@ -146,6 +180,21 @@
                             <option value="selesai" @selected(old('status_pemesanan', $pemesanan->status_pemesanan) == "selesai")>Selesai</option>
                             <option value="dibatalkan" @selected(old('status_pemesanan', $pemesanan->status_pemesanan) == "dibatalkan")>Dibatalkan</option>
                         </select>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label for="bukti_pembayaran-{{ $pemesanan->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Foto Bukti Pembayaran</label>
+                        <input class="block w-full text-sm text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 file:bg-indigo-600 file:text-white" aria-describedby="file_input_help" id="file_input_pembayaran-{{ $pemesanan->id }}" type="file" name="bukti_pembayaran">
+                        @if ($pemesanan->bukti_pembayaran)
+                            <p class="mt-1 text-sm text-gray-400" id="file_input_help">{{ $pemesanan->bukti_pembayaran }}</p>
+                            <p class="mt-2 text-xs text-gray-400">Gambar saat ini ada. Unggah file baru untuk mengganti.</p>
+                        @endif
+
+                        {{-- <div id="dropzone-area" class="mt-2 flex flex-col items-center justify-center w-full h-36 bg-gray-700 border-2 border-dashed border-gray-600 rounded-lg">
+                            <img id="image-preview" src="#" alt="Preview KTP/SIM" class="hidden w-full h-full object-cover rounded-lg p-2" />
+                            <div id="default-content" class="flex flex-col items-center justify-center text-white pt-5 pb-6">
+                                </div>
+                        </div> --}}
                     </div>
 
                     <div class="col-span-2">
@@ -181,7 +230,7 @@
                         {{ __('Simpan') }}
                     </x-primary-button>
 
-                    <button data-modal-hide="create-modal" type="button"
+                    <button data-modal-hide="edit-modal-{{ $pemesanan->id }}" type="button"
                         class="text-gray-300 bg-gray-700 border border-gray-600 hover:bg-gray-600 hover:text-white focus:ring-4 focus:ring-gray-500 font-medium leading-5 rounded-lg text-sm px-4 py-2.5 focus:outline-none">
                         Cancel
                     </button>

@@ -81,6 +81,8 @@
             // Anda bisa menempatkan kode ini di file JS utama atau di dalam tag <script> di View
             const tglMulaiElEdit = document.getElementById('tgl_mulai-' + pemesananId);
             const durasiRentalElEdit = document.getElementById('durasi_rental-' + pemesananId);
+            const decrementBtnEdit = document.getElementById('decrement-button-' + pemesananId);
+            const incrementBtnEdit = document.getElementById('increment-button-' + pemesananId);
             const tglSelesaiHiddenElEdit = document.getElementById('tgl_selesai_hidden-' + pemesananId);
 
 
@@ -136,7 +138,12 @@
 
             tglMulaiElEdit.addEventListener('change', calculateEndDate);
             durasiRentalElEdit.addEventListener('change', calculateEndDate);
-
+            decrementBtnEdit.addEventListener('click', function() {
+                setTimeout(calculateEndDate, 0)
+            });
+            incrementBtnEdit.addEventListener('click', function() {
+                setTimeout(calculateEndDate, 0)
+            });
             tglMulaiElEdit.addEventListener('changeDate', calculateEndDate);
             calculateEndDate();
 
@@ -164,7 +171,7 @@
                 const selectedUnitId = unitPeralatanSelectEdit.value;
                 const durasiValue = parseInt(durasiRentalElEdit.value);
 
-                const selectedUnit = cascadingDataEditEdit.find(unit => String(unit.id_unit_peralatan) === selectedUnitId);
+                const selectedUnit = availableUnits.find(unit => String(unit.id_unit_peralatan) === selectedUnitId);
 
                 // console.log(selectedUnit)
 
@@ -186,6 +193,12 @@
                 totalHargaElEdit.value = totalHarga;
             }
 
+            decrementBtnEdit.addEventListener('click', function() {
+                setTimeout(calculateTotalHarga, 0)
+            });
+            incrementBtnEdit.addEventListener('click', function() {
+                setTimeout(calculateTotalHarga, 0)
+            });
             unitPeralatanSelectEdit.addEventListener('change', calculateTotalHarga);
             durasiRentalElEdit.addEventListener('change', calculateTotalHarga);
 
@@ -258,6 +271,8 @@
             // Anda bisa menempatkan kode ini di file JS utama atau di dalam tag <script> di View
             const tglMulaiEl = document.getElementById('tgl_mulai');
             const durasiRentalEl = document.getElementById('durasi_rental');
+            const decrementBtn = document.getElementById('decrement-button');
+            const incrementBtn = document.getElementById('increment-button');
             const tglSelesaiHiddenEl = document.getElementById('tgl_selesai_hidden');
 
 
@@ -286,34 +301,29 @@
 
                 const parts = tglMulaiValue.split('-');
                 if (parts.length !== 3) return;
-                // console.log(parts);
+                console.log(parts);
                 const startDate = new Date(parts[0], parseInt(parts[1]) - 1, parts[2]);
 
                 startDate.setDate(startDate.getDate() + durasiValue);
 
-                // console.log(startDate)
-
                 const endDate = new Date(startDate);
-
                 const pad = (num) => (num < 10 ? '0' : '') + num;
-
                 const month = endDate.getMonth();
-
                 const formattedMonth = pad(month + 1);
-
                 const formattedEndDate = `${endDate.getFullYear()}-${formattedMonth}-${pad(endDate.getDate())}`;
 
-                // console.log(formattedEndDate);
-
-                // 4. Update Input Tersembunyi
                 tglSelesaiHiddenEl.value = formattedEndDate;
 
-                // console.log(`Rental Selesai pada: ${formattedEndDate}`);
             }
 
             tglMulaiEl.addEventListener('change', calculateEndDate);
+            decrementBtn.addEventListener('click', function() {
+                setTimeout(calculateEndDate, 0)
+            });
+            incrementBtn.addEventListener('click', function() {
+                setTimeout(calculateEndDate, 0)
+            });
             durasiRentalEl.addEventListener('change', calculateEndDate);
-
             tglMulaiEl.addEventListener('changeDate', calculateEndDate);
             calculateEndDate();
 
@@ -324,9 +334,10 @@
             const hargaPerHariHidden = document.getElementById('harga_rental_per_hari_hidden');
             const totalHargaSpan = document.getElementById('total_harga_span');
             const totalHargaEl = document.getElementById('total_biaya');
+            const pengirimanEl = document.getElementById('pengiriman');
 
             const unitJenis = @json($cascadingDataEdit);
-            console.log(unitJenis)
+            // console.log(unitJenis)
 
             const formatRupiah = (angka) => {
                 return new Intl.NumberFormat('id-ID').format(angka);
@@ -354,12 +365,32 @@
                     totalHarga = hargaPerHari * durasiValue;
                 }
 
+                if(pengirimanEl.value == 'diantar') {
+                    totalHarga += 10000;
+                }
                 totalHargaSpan.textContent = formatRupiah(totalHarga);
                 totalHargaEl.value = totalHarga;
             }
 
+            decrementBtn.addEventListener('click', function() {
+                setTimeout(calculateTotalHarga, 0)
+            });
+            incrementBtn.addEventListener('click', function() {
+                setTimeout(calculateTotalHarga, 0)
+            });
+            pengirimanEl.addEventListener('change', calculateTotalHarga);
             unitPeralatanSelect.addEventListener('change', calculateTotalHarga);
             durasiRentalEl.addEventListener('change', calculateTotalHarga);
+        }
+
+        function initModalPreview(total, id) {
+            const prevTotalBiaya = document.getElementById('prev_total_biaya-' + id);
+
+            const formatRupiah = (angka) => {
+                return new Intl.NumberFormat('id-ID').format(angka);
+            }
+            prevTotalBiaya.textContent = 'Rp. ' + formatRupiah(total)
+
         }
     </script>
 
@@ -429,6 +460,7 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 flex space-x-2">
+                                    <button data-modal-target="preview-modal-{{ $pemesanan->id }}" data-modal-toggle="preview-modal-{{ $pemesanan->id }}" class="font-medium text-green-600 dark:text-green-500 hover:underline">Detail</button>
                                     <button data-modal-target="edit-modal-{{ $pemesanan->id }}" data-modal-toggle="edit-modal-{{ $pemesanan->id }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
 
                                     <form action="{{ route('pemesanan.destroy', $pemesanan->id) }}" id="delete-form-{{ $pemesanan->id }}" method="POST" onsubmit="event.preventDefault(); confirmDelete('delete-form-{{ $pemesanan->id }}');">
@@ -438,7 +470,9 @@
                                     </form>
                                 </td>
                             </tr>
+                            @include('admin.pemesanan.preview-modal',['pemesanan' => $pemesanan])
                             @include('admin.pemesanan.edit-modal',['pemesanan' => $pemesanan])
+
                             <script>
 
                                 initModalEdit(
@@ -446,6 +480,8 @@
                                     '{{ $pemesanan->id_unit_peralatan }}',
                                     @json($cascadingDataEdit[$pemesanan->id])
                                 );
+
+                                initModalPreview('{{ $pemesanan->total_biaya }}', '{{ $pemesanan->id }}');
                             </script>
                             @endforeach
                         </tbody>
