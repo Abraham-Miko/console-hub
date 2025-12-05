@@ -18,13 +18,25 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" class="text-white" />
+            <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Username</p>
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" class="text-white" />
+            <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Nama Depan</p>
+            <x-text-input id="nama_depan" name="nama_depan" type="text" class="mt-1 block w-full" :value="old('nama_depan', $user->nama_depan)" required autofocus autocomplete="nama_depan" />
+            <x-input-error class="mt-2" :messages="$errors->get('nama_depan')" />
+        </div>
+
+        <div>
+            <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Nama Belakang</p>
+            <x-text-input id="nama_belakang" name="nama_belakang" type="text" class="mt-1 block w-full" :value="old('nama_belakang', $user->nama_belakang)" required autofocus autocomplete="nama_belakang" />
+            <x-input-error class="mt-2" :messages="$errors->get('nama_belakang')" />
+        </div>
+
+        <div>
+            <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Email</p>
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
