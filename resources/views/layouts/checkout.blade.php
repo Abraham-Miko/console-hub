@@ -1,4 +1,3 @@
-<!-- Final Combined Checkout Page (Laravel Blade + Tailwind + Flowbite) -->
 <x-page-template>
 
     {{-- <div class="container flex px-6 pt-6" aria-label="Breadcrumb">
@@ -55,22 +54,42 @@
                     {{-- @endforeach --}}
                     <div>
                         <label for="nama_penyewa" class="font-medium">Nama Lengkap*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1" name="nama_penyewa" id="nama_penyewa">
+                        <input class="w-full border rounded-lg p-2 mt-1" name="nama_penyewa" id="nama_penyewa"
+                                type="text"
+                                minlength="3"
+                                maxlength="100"
+                                pattern="[A-Za-z\s']+"
+                                required>
                     </div>
 
                     <div>
-                        <label for="nik_penyewa" font-medium">NIK*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1" name="nik_penyewa" id="nik_penyewa">
+                        <label for="nik_penyewa" class="font-medium">NIK*</label>
+                        <input class="w-full border rounded-lg p-2 mt-1" name="nik_penyewa" id="nik_penyewa"
+                                type="tel"
+                                maxlength="16" minlength="16"
+                                pattern="[0-9]{16}"
+                                inputmode="numeric"
+                                required>
                     </div>
 
                     <div class="md:col-span-2">
                         <label for="alamat_penyewa" class="font-medium">Alamat Lengkap*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1" name="alamat_penyewa" id="alamat_penyewa">
+                        <input class="w-full border rounded-lg p-2 mt-1" name="alamat_penyewa" id="alamat_penyewa"
+                                type="text"
+                                minlength="10"
+                                maxlength="200"
+                                required>
                     </div>
 
                     <div>
                         <label for="telepon_penyewa" class="font-medium">No. Telepon*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1" name="telepon_penyewa" id="telepon_penyewa">
+                        <input class="w-full border rounded-lg p-2 mt-1" name="telepon_penyewa" id="telepon_penyewa"
+                                type="tel"
+                                minlength="10"
+                                maxlength="13"
+                                pattern="[0-9]+"
+                                inputmode="numeric"
+                                required>
                     </div>
 
                     <div>
@@ -410,8 +429,34 @@
             }
         }
 
+        const teleponInputEl = document.getElementById('telepon_penyewa');
+        if (teleponInputEl) {
+            teleponInputEl.addEventListener('input', function(e) {
+                let value = e.target.value;
+                // Hapus semua karakter non-angka
+                value = value.replace(/[^0-9]/g, '');
+                e.target.value = value;
+            });
+        }
+
+        const NIKInput = document.getElementById('nik_penyewa');
+        if (NIKInput) {
+            NIKInput.addEventListener('input', function(e) {
+                let value = e.target.value;
+
+                // 1. KOREKSI: Hapus semua karakter yang BUKAN angka (0-9)
+                // Ekspresi regex yang benar adalah /[^0-9]/g
+                value = value.replace(/[^0-9]/g, '');
+
+                // 2. TAMBAH: Batasi panjang value menjadi maksimal 16 digit
+                if (value.length > 16) {
+                    value = value.substring(0, 16);
+                }
+
+                e.target.value = value;
+            });
+        }
+
     </script>
 
 </x-page-template>
-</body>
-</html>
