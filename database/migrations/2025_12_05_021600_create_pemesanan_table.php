@@ -24,9 +24,9 @@ return new class extends Migration
             $table->date('tgl_mulai');
             $table->integer('durasi_rental');
             $table->date('tgl_selesai');
-            $table->enum('pengiriman', ['ambil_sendiri', 'diantar'])->default('ambil_sendiri')->after('tgl_selesai');
-            $table->enum('pembayaran', ['transfer', 'cash'])->default('transfer')->after('pengiriman');
-            $table->string('bukti_pembayaran')->nullable()->after('pembayaran');
+            $table->enum('pengiriman', ['diantar', 'diambil']);
+            $table->enum('pembayaran', ['transfer_bank', 'qris']);
+            $table->string('bukti_pembayaran');
             $table->decimal('total_biaya', 10, 2)->default(0);
             $table->uuid('verification_token')->unique();
             $table->enum('status_pemesanan', ['dipesan', 'dirental', 'selesai', 'dibatalkan'])
