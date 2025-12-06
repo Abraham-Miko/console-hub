@@ -23,7 +23,7 @@
                         <label for="merek" class="block mb-2.5 text-sm font-medium text-gray-300">Merek</label>
                         <input type="text" name="merek" id="merek"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
-                            placeholder="Contoh: Avanza" required="">
+                            placeholder="Contoh: PlayStation 5" required="">
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">

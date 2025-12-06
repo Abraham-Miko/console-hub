@@ -8,16 +8,21 @@
             </div>
 
             <div>
+
                 @auth
 
-                    <a
-                        href="{{ url('/dashboard') }}"
-                        class="inline-block font-bold tracking-wide px-5 py-2.5 bg-[#ffa602] border-[#19140035] hover:border-[#1915014a] border text-[#000000]
-                        hover:text-[#ffffff] rounded-xl text-sm leading-none transition"
-                    >
-                        Dashboard
-                    </a>
+                    @if (Auth::user()->roles === 'admin')
+                        {{-- Tautan ini hanya muncul jika role adalah 'admin' --}}
+                        <a
+                            href="{{ url('/dashboard') }}"
+                            class="inline-block font-bold tracking-wide px-5 py-2.5 bg-[#ffa602] border-[#19140035] hover:border-[#1915014a] border text-[#000000]
+                            hover:text-[#ffffff] rounded-xl text-sm leading-none transition"
+                        >
+                            Dashboard
+                        </a>
+                    @endif
 
+                    {{-- Tautan ini akan muncul untuk SEMUA pengguna yang sudah login (admin dan user) --}}
                     <a
                         href="{{ url('/katalog') }}"
                         class="inline-block font-bold tracking-wide px-5 py-2.5 bg-[#ffa602] border-[#19140035] hover:border-[#1915014a] border text-[#000000]
@@ -27,7 +32,7 @@
                     </a>
 
                 @else
-
+                    {{-- Tautan ini muncul jika pengguna belum login --}}
                     <a href="{{ route('login') }}" class="text-gray-700 hover:text-[#e29402] text-md">Log in &raquo;</a>
 
                 @endauth
