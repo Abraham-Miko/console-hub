@@ -10,7 +10,7 @@
          </button>
         <a href="{{ route('dashboard') }}" class="flex ms-2 md:me-24">
           <x-application-logo class="h-8 me-3" />
-          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Carental</span>
+          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Console Hub</span>
         </a>
         </div>
         <div class="flex items-center">
