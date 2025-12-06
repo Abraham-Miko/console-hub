@@ -89,21 +89,6 @@
                 });
             }
 
-            function loadUserData(user) {
-                // 1. Ambil Form dan Set Action URL
-                const form = document.getElementById('edit-user-form');
-                // Route update memerlukan ID user: /akun_user/{id}
-                form.action = `/akun_user/${user.id}`;
-
-                document.getElementById('edit-username').value = user.username;
-                document.getElementById('edit-nama_depan').value = user.nama_depan;
-                document.getElementById('edit-nama_belakang').value = user.nama_belakang;
-                document.getElementById('edit-email').value = user.email;
-                document.getElementById('edit-date_of_birth').value = user.date_of_birth;
-
-                document.getElementById('edit-roles').value = user.roles;
-            }
-
             function confirmDelete(formId) {
             // Fungsi ini dipanggil dari event onsubmit pada tag <form>
 
