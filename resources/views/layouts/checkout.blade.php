@@ -152,6 +152,8 @@
                 </div>
             </div>
 
+            <input type="hidden" name="status_pemesanan" id="status_pemesanan" value="dipesan">
+
             {{-- Payment Details --}}
             <div class="bg-white p-6 rounded-xl shadow mt-10">
                 <h2 class="text-2xl font-bold mb-4 uppercase">Pilihan Pembayaran</h2>

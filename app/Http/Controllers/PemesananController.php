@@ -303,7 +303,7 @@ class PemesananController extends Controller
         if (str_contains($path, 'konfirmasi')) {
             $newPemesananStatus = 'dirental';
             $newUnitStatus = 'dirental';
-            $message = 'Serah terima kunci berhasil. Unit telah berstatus Dirental.';
+            $message = 'Serah terima barang berhasil. Unit telah berstatus Dirental.';
         } elseif (str_contains($path, 'pengembalian')) {
             $newPemesananStatus = 'selesai';
             $newUnitStatus = 'tersedia';
