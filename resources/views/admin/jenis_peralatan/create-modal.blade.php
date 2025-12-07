@@ -39,7 +39,7 @@
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="harga_rental_per_hari" class="block mb-2.5 text-sm font-medium text-gray-300">Harga/hari (Rp)</label>
-                        <input type="number" name="harga_rental_per_hari" id="harga_rental_per_hari" minlength="4"
+                        <input type="number" name="harga_rental_per_hari" id="harga_rental_per_hari" minlength="4" step="1000"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
                             placeholder="Contoh: 50000" required="">
                     </div>
