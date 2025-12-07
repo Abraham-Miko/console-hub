@@ -9,12 +9,6 @@
 
             <div>
                 <div class="flex items-center">
-                    <a
-                        href="{{ url('/histori-rental') }}"
-                        class="inline-block font-bold tracking-wide px-4 py-2 text-[#ffa602] hover:text-[#e09100] text-sm leading-none transition duration-300 mr-4 border-b-2 border-transparent hover:border-[#ffa602]"
-                    >
-                        Histori Pemesanan
-                    </a>
 
                     @auth
                         {{-- Pengguna TELAH login (User atau Admin) --}}
@@ -75,7 +69,7 @@
                                         Profil Saya
                                     </a>
 
-                                    @if (Auth::user()->roles === 'user' || Auth::user()->roles === 'admin')
+
                                     {{-- Opsi Umum (Histori Pemesanan) --}}
                                     <a href="{{ url('/histori-rental') }}" class="text-gray-700 flex items-center px-4 py-2 text-sm hover:bg-gray-100 hover:text-black transition duration-150">
                                         <svg class="w-5 h-5 mr-3 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -90,7 +84,6 @@
                                             Keluar
                                         </button>
                                     </form>
-                                    @endif
 
                                 </div>
                             </div>
