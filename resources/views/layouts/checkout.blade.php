@@ -68,7 +68,7 @@
 
                     <div>
                         <label for="tgl_mulai" class="font-medium">Tanggal Mulai*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1" type="date" name="tgl_mulai" id="tgl_mulai">
+                        <input class="w-full border rounded-lg p-2 mt-1" type="date" name="tgl_mulai" id="tgl_mulai" min="{{ \Carbon\Carbon::today()->format('Y-m-d'); }}">
                     </div>
 
                     <div>
