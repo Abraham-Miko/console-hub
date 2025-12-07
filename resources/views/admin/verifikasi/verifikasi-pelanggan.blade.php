@@ -88,11 +88,41 @@
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
     <script>
+        let html5QrcodeScanner;
+
+        // Fungsi baru untuk menutup modal dan mereload/merestart scanner
+        function closeModalAndRestartScanner() {
+            const modalContainer = document.getElementById('verifikasi-modal-container');
+            modalContainer.innerHTML = ''; // Hapus modal dari DOM
+            const feedbackEl = document.getElementById('manual-feedback');
+            feedbackEl.textContent = ''; // Hapus feedback error manual jika ada
+
+            if (typeof html5QrcodeScanner !== 'undefined') {
+                window.location.reload();
+            }
+        }
         document.addEventListener('DOMContentLoaded', function() {
             // Ambil elemen yang sudah didefinisikan di HTML
             const searchButton = document.getElementById('search_pemesanan_btn');
             const tokenInput = document.getElementById('manual_token_input');
             const feedbackEl = document.getElementById('manual-feedback');
+
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader",
+                {
+                    fps: 10,
+                    qrbox: { width: 250, height: 250 },
+                    qrCodeProperties: {
+                        tryHarder: true
+                    },
+                    // Opsional: Batasi resolusi yang masuk
+                    videoConstraints: {
+                        facingMode: { ideal: "environment" },
+                        width: { ideal: 1920 },
+                        height: { ideal: 1080 }
+                    }
+                }
+            );
 
             if (searchButton && tokenInput) {
                 searchButton.addEventListener('click', function() {
@@ -104,8 +134,11 @@
 
             function processVerificationToken(token) {
                 try {
-                    if (typeof html5QrcodeScanner !== 'undefined' && html5QrcodeScanner.getState() === 2) {
-                        html5QrcodeScanner.pause();
+                    if (typeof html5QrcodeScanner !== 'undefined') {
+                        // Cek status, 2 = SCANNING
+                        if (html5QrcodeScanner.getState() === 2) {
+                            html5QrcodeScanner.pause();
+                        }
                     }
                 } catch (e) {
                     console.warn("Scanner tidak dapat dihentikan, mungkin sudah di-clear.");
@@ -248,22 +281,7 @@
 
         }
 
-        var html5QrcodeScanner = new Html5QrcodeScanner(
-        "reader",
-        {
-            fps: 10,
-            qrbox: { width: 250, height: 250 },
-            qrCodeProperties: {
-                tryHarder: true
-            },
-            // Opsional: Batasi resolusi yang masuk
-            videoConstraints: {
-                facingMode: { ideal: "environment" },
-                width: { ideal: 1920 },
-                height: { ideal: 1080 }
-            }
-        }
-    );
+
         </script>
     </x-app-layout>
 {{-- </body>
