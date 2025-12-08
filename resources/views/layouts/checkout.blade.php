@@ -1,4 +1,7 @@
 <x-page-template>
+    @section('title', 'Checkout')
+
+    {{-- NAVBAR --}}
 
     <div class="container mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
 

@@ -1,4 +1,7 @@
 <x-page-template>
+    @section('title', 'Profil Pengguna')
+
+    {{-- NAVBAR --}}
     @include('layouts.user-navigation')
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-[#ffac3e] shadow lg:rounded-lg">

@@ -1,4 +1,7 @@
 <x-app-layout>
+    @section('title', 'Daftar Unit Peralatan')
+
+    {{-- NAVBAR --}}
 
     <div class="py-12">
         <div class="rounded-lg p-6">

@@ -1,4 +1,7 @@
 <x-app-layout>
+    @section('title', 'Daftar Pemesanan')
+
+    {{-- NAVBAR --}}
 
     <script>
         function initModalEdit(pemesananId, selectedUnitId, allUnitsData) {
