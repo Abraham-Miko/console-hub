@@ -1,4 +1,7 @@
 <x-page-template>
+    @section('title', 'Sign Up')
+
+    {{-- NAVBAR --}}
 
     <a href="{{ route("welcome") }}" class="absolute top-4 right-4 text-gray-500 hover:text-[#e29402] p-1 rounded-full
     transition duration-150" aria-label="Close">
