@@ -71,7 +71,7 @@
 
                     <div>
                         <label for="tgl_mulai" class="font-medium">Tanggal Mulai*</label>
-                        <input class="w-full border rounded-lg p-2 mt-1" type="date" name="tgl_mulai" id="tgl_mulai">
+                        <input class="w-full border rounded-lg p-2 mt-1" type="date" name="tgl_mulai" id="tgl_mulai" min="{{ \Carbon\Carbon::today()->format('Y-m-d'); }}">
                     </div>
 
                     <div>
@@ -136,7 +136,7 @@
                             <img src="{{ asset('images/LOGO BANK JATIM.png') }}" alt="" class="w-24">
                             <div>
                                 <p class="text-lg font-semibold">Bank Jatim</p>
-                                <p class="text-sm text-gray-600">No. Rek: 1122-3344-5566-7788 (a/n Carental)</p>
+                                <p class="text-sm text-gray-600">No. Rek: 1122-3344-5566-7788 (a/n Console Hub)</p>
                             </div>
                         </div>
 
@@ -144,7 +144,7 @@
                             <img src="{{ asset('images/LOGO BANK BRI.png') }}" alt="" class="w-24">
                             <div>
                                 <p class="text-lg font-semibold">Bank BRI</p>
-                                <p class="text-sm text-gray-600">No. Rek: 1122-3344-5566-7788 (a/n Carental)</p>
+                                <p class="text-sm text-gray-600">No. Rek: 1122-3344-5566-7788 (a/n Console Hub)</p>
                             </div>
                         </div>
 
@@ -152,7 +152,7 @@
                             <img src="{{ asset('images/LOGO BANK BCA.png') }}" alt="" class="w-24">
                             <div>
                                 <p class="text-lg font-semibold">Bank BCA</p>
-                                <p class="text-sm text-gray-600">No. Rek: 1122-3344-5566-7788 (a/n Carental)</p>
+                                <p class="text-sm text-gray-600">No. Rek: 1122-3344-5566-7788 (a/n Console Hub)</p>
                             </div>
                         </div>
 
@@ -160,7 +160,7 @@
                             <img src="{{ asset('images/LOGO BANK MANDIRI.png') }}" alt="" class="w-24">
                             <div>
                                 <p class="text-lg font-semibold">Bank Mandiri</p>
-                                <p class="text-sm text-gray-600">No. Rek: 1122-3344-5566-7788 (a/n Carental)</p>
+                                <p class="text-sm text-gray-600">No. Rek: 1122-3344-5566-7788 (a/n Console Hub)</p>
                             </div>
                         </div>
                     </div>
