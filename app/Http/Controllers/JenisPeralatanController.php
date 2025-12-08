@@ -23,7 +23,7 @@ class JenisPeralatanController extends Controller
             'merek' => ['required', 'string', 'max:255'],
             'harga_rental_per_hari' => ['required', 'numeric'],
             'deskripsi' => ['required', 'string', 'max:255'],
-            'foto_peralatan' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
+            'foto_peralatan' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
         ]);
 
         // dd($validatedData);

@@ -32,11 +32,23 @@
                         </select>
                     </div>
 
-                    <div class="col-span-2">
-                        <label for="nomor_seri" class="block mb-2.5 text-sm font-medium text-gray-300">Nomor Seri</label>
-                        <input type="text" name="nomor_seri" id="nomor_seri"
+                    {{-- PERUBAHAN: Nomor Seri Awal --}}
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="nomor_seri_awal" class="block mb-2.5 text-sm font-medium text-gray-300">Nomor Seri Awal</label>
+                        {{-- Ganti 'nomor_seri' menjadi 'nomor_seri_awal' --}}
+                        <input type="text" name="nomor_seri_awal" id="nomor_seri_awal"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
                             placeholder="Contoh: 4516" required="">
+                        <p class="mt-2 text-xs text-gray-400">Contoh: Jika '4516' dan Jumlah '3', akan dibuat 4516, 4517, 4518.</p>
+                    </div>
+
+                    {{-- PENAMBAHAN: Jumlah Unit --}}
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="jumlah_unit" class="block mb-2.5 text-sm font-medium text-gray-300">Jumlah Unit</label>
+                        <input type="number" name="jumlah_unit" id="jumlah_unit"
+                            class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
+                            placeholder="Contoh: 3" required="" min="1" value="1">
+                        <p class="mt-2 text-xs text-gray-400">Tentukan berapa unit yang ingin ditambahkan.</p>
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">

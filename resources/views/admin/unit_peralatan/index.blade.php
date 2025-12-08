@@ -97,10 +97,16 @@
     if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
         const dataTable = new simpleDatatables.DataTable("#search-table", {
             searchable: true,
-            sortable: false
+            // Perubahan: Mengaktifkan sorting
+            sortable: true,
+            columns: [
+                // Kolom 'Aksi' (index 5) diatur agar tidak dapat diurutkan
+                { select: 5, sortable: false }
+            ]
         });
     }
 
+    // Fungsi konfirmasi hapus menggunakan SweetAlert2 (atau library yang Anda gunakan)
         function confirmDelete(formId) {
         Swal.fire({
             title: "Apakah Anda Yakin?",
