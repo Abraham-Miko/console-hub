@@ -53,6 +53,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/unit_peralatan', UnitPeralatanController::class);
     Route::resource('/pemesanan', PemesananController::class);
 
+    Route::delete('/admin/unit-peralatan/bulk-delete', [UnitPeralatanController::class, 'bulkDestroy'])->name('unit_peralatan.bulk_destroy');
+
     Route::get('/api/verifikasi/detail/{token}', [VerifikasiController::class, 'getDetailByToken'])
     ->name('api.verifikasi.detail');
 

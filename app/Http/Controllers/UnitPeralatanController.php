@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UnitPeralatan;
 use App\Models\JenisPeralatan;
-use Illuminate\Support\Facades\Validator; // Tambahkan ini
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule; // Import Rule
 
 class UnitPeralatanController extends Controller
 {
     public function index() {
         $unit_peralatans = UnitPeralatan::with('jenis_peralatan')->latest()->get();
         $jenisPeralatans = JenisPeralatan::all();
-        // Pastikan Anda memanggil view 'admin.unit_peralatan.index'
+        // Pastikan Anda memanggil view 'admin.unit_peralatan.page'
         return view('admin.unit_peralatan.index', compact('unit_peralatans', 'jenisPeralatans'));
     }
 
@@ -83,13 +84,51 @@ class UnitPeralatanController extends Controller
         }
 
         // 3. Respon Pengguna
-        $message = "Berhasil menambahkan **$createdCount** unit peralatan baru.";
+        $message = "Berhasil menambahkan $createdCount unit peralatan baru.";
 
         if ($duplicateCount > 0) {
             $message .= " ($duplicateCount unit dengan Nomor Seri yang sama per Jenis Peralatan telah dilewati.)";
         } elseif ($createdCount == 0 && $jumlahUnit > 0) {
             // Kasus di mana user mencoba menambahkan unit, tetapi semuanya sudah ada (duplikat)
             $message = "Gagal menambahkan unit peralatan. Semua unit yang diinput sudah ada (duplikat).";
+        }
+
+        return redirect()->route('unit_peralatan.index')->with('success', $message);
+    }
+
+    // PENAMBAHAN: METHOD HAPUS MASSAL
+    public function bulkDestroy(Request $request) {
+        // 1. Validasi Input
+        $validator = Validator::make($request->all(), [
+            // Memastikan field yang dikirim valid dan sesuai dengan yang diizinkan
+            'field' => ['required', 'string', Rule::in(['kondisi', 'status_peralatan', 'id_jenis_peralatan'])],
+            'value' => 'required',
+        ], [
+            'field.required' => 'Kriteria penghapusan wajib dipilih.',
+            'value.required' => 'Nilai kriteria penghapusan wajib diisi.',
+            'field.in' => 'Kriteria penghapusan tidak valid.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('unit_peralatan.index')->with('error', 'Gagal menghapus data massal: Kriteria tidak valid atau kosong.');
+        }
+
+        $field = $request->input('field');
+        $value = $request->input('value');
+        $message = '';
+
+        // Dapatkan jumlah data yang akan dihapus
+        // INI ADALAH LOGIKA KUNCI: Hanya memilih baris di mana $field SAMA DENGAN $value
+        $count = UnitPeralatan::where($field, $value)->count();
+
+        if ($count > 0) {
+            // Hapus data
+            UnitPeralatan::where($field, $value)->delete();
+
+            // Format pesan sukses
+            $message = "Berhasil menghapus $count unit peralatan.";
+        } else {
+            $message = "Tidak ada unit peralatan yang ditemukan dengan kriteria yang dipilih. Tidak ada data yang dihapus.";
         }
 
         return redirect()->route('unit_peralatan.index')->with('success', $message);

@@ -8,7 +8,7 @@
 
             <div class="flex items-center justify-between border-b border-gray-700 pb-4 md:pb-5">
                 <h3 class="text-xl font-medium text-white">
-                    Edit Peralatan : {{ $unit_peralatan->jenis_peralatan->merek }} [{{ $unit_peralatan->nomor_seri }}]</h3>
+                    Edit Peralatan : {{ $unit_peralatan->jenis_peralatan->merek }} <br> Nomor Seri : {{ $unit_peralatan->nomor_seri }}</h3>
 
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-700 hover:text-white rounded-lg text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="edit-modal-{{ $unit_peralatan->id_unit_peralatan }}">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
@@ -25,7 +25,7 @@
                         <label for="id_jenis_peralatan-{{ $unit_peralatan->id_unit_peralatan }}" class="block mb-2.5 text-sm font-medium text-gray-300">Jenis Peralatan</label>
                         <select id="id_jenis_peralatan-{{ $unit_peralatan->id_unit_peralatan }}" name="id_jenis_peralatan"
                             class="block w-full px-3 py-2.5 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 placeholder:text-gray-400" required>
-                            <option disabled value="">- Pilih Jenis eralatan -</option>
+                            <option disabled value="">- Pilih Jenis peralatan -</option>
 
                             @foreach($jenisPeralatans as $jenis)
                                 <option
