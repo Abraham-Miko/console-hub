@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    // public function setNameAttribute($value)
+    // {
+    //     $this->attributes['name'] = $value ? $value : null;
+    // }
+
     /**
      * The attributes that should be hidden for serialization.
      *
