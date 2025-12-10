@@ -22,11 +22,11 @@
                 <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
 
                     <div class="col-span-2">
-                        <label for="username-{{ $user->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Username</label>
-                        <input type="text" name="username" id="username-{{ $user->id }}"
+                        <label for="name-{{ $user->id }}" class="block mb-2.5 text-sm font-medium text-gray-300">Username</label>
+                        <input type="text" name="name" id="name-{{ $user->id }}"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 py-2.5 placeholder:text-gray-400"
-                            placeholder="Contoh: FrlFrz" required="" value="{{ old('username', $user->username) }}">
-                            @error('username')
+                            placeholder="Contoh: FrlFrz" required="" value="{{ old('name', $user->name) }}">
+                            @error('name')
                                 <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                             @enderror
                     </div>
