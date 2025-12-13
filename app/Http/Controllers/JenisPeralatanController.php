@@ -115,4 +115,12 @@ class JenisPeralatanController extends Controller
 
         return view('layouts.katalog', compact('allJenis'));
     }
+
+    public function itemDetails($id) {
+        $jenis = JenisPeralatan::with(['unit_peralatans' => function ($query) {
+            $query->where('status_peralatan', 'tersedia');
+        }])->findOrFail($id);
+
+        return view('components.item-details', compact('jenis'));
+    }
 }

@@ -65,7 +65,7 @@
                                         <svg class="w-5 h-5 mr-3 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                                         Profil Saya
                                     </a>
-                                    
+
                                     {{-- Opsi Umum (Histori Pemesanan) --}}
                                     <a href="{{ url('/histori-rental') }}" class="text-gray-700 flex items-center px-4 py-2 text-sm hover:bg-gray-100 hover:text-black transition duration-150">
                                         <svg class="w-5 h-5 mr-3 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -176,10 +176,18 @@
                         </span>
                     </div>
 
+                    {{-- Detail Barang --}}
+                    <a
+                    href="{{ route('item-details', $jenis->id_jenis_peralatan) }}"
+                    class="block w-full text-center py-3 rounded-xl font-bold transition duration-300
+                    ($jenis->stok_tersedia > 0) bg-[#02ccff] text-gray-900 hover:text-[#fffc44] shadow-md">
+                    <p>Lihat Detail</p>
+                    </a>
+
                     {{-- Tombol Sewa --}}
                     <a
                         href="{{ route('pemesanan.checkout', $jenis->id_jenis_peralatan) }}"
-                        class="block w-full text-center py-3 rounded-xl font-bold transition duration-300
+                        class="mt-4 block w-full text-center py-3 rounded-xl font-bold transition duration-300
                         @if ($jenis->stok_tersedia > 0) bg-[#ffa602] text-gray-900 hover:text-white shadow-md
                         @else bg-gray-400 text-gray-600 hover:text-gray-600 cursor-not-allowed pointer-events-none
                         @endif

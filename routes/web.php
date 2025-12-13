@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Route::get('/katalog', [JenisPeralatanController::class, 'katalog'])->name('katalog');
 
+Route::get('/item-details/{merek}', [JenisPeralatanController::class, 'itemDetails'])->name('item-details');
+
 Route::get('/search', [SearchController::class, 'index']);
 
 Route::middleware('auth')->group(function () {

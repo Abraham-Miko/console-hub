@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title', config('app.name'))</title>
-    
+
     <!-- Fonts -->
-    <link rel="icon" type="image/png" href="{{ asset('images/LOGO.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/LOGO CONSOLE HUB.png') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
